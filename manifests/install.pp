@@ -1,4 +1,4 @@
-class pe_agent::install inherits pe_agent {
+class puppet_ent_agent::install inherits puppet_ent_agent {
   include ::pe_agent::repo
 
   case $::osfamily {

@@ -1,5 +1,5 @@
 # manages pe-puppet service state
-class pe_agent::service inherits pe_agent {
+class puppet_ent_agent::service inherits puppet_ent_agent {
   service { 'pe-puppet':
     ensure => running,
     enable => true,

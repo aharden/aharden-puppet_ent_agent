@@ -1,7 +1,7 @@
 # AIX agent installation
-# AIX doesn't support pe-agent as a package, so we use a modification of 
+# AIX doesn't support pe-agent as a package, so we use a modification of
 #  the PE curl-based installation
-class pe_agent::aix inherits pe_agent {
+class puppet_ent_agent::aix inherits puppet_ent_agent {
   if $::pe_version != $version {
 
     file { $staging_dir:

@@ -1,4 +1,4 @@
-class pe_agent::cron inherits pe_agent {
+class puppet_ent_agent::cron inherits puppet_ent_agent {
   $first = fqdn_rand(30)
   $second = fqdn_rand(30) + 30
 

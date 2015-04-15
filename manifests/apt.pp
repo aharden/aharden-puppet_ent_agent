@@ -1,4 +1,4 @@
-class pe_agent::apt inherits pe_agent {
+class puppet_ent_agent::apt inherits puppet_ent_agent {
   if $package_ensure == 'latest' {
     $package_version = 'current'
   } else {

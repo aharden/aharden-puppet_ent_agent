@@ -26,7 +26,7 @@
 #
 # Sample Usage:
 #
-class pe_agent::params {
+class puppet_ent_agent::params {
   if $::osfamily == 'windows' {
     $appdata = regsubst($::common_appdata,'\\','/','G')
     $config = "${appdata}/PuppetLabs/puppet/etc/puppet.conf"

@@ -4,7 +4,7 @@
 #
 # if the platform doesn't support a repository, it
 # is skipped
-class pe_agent::repo inherits pe_agent {
+class puppet_ent_agent::repo inherits puppet_ent_agent {
   case $::osfamily {
     'RedHat': { contain pe_agent::yum }
     'Debian': { contain pe_agent::apt }

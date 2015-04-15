@@ -1,7 +1,7 @@
 # Solaris agent installation
-# Solaris doesn't support pe-agent as a package, so we use a modification of 
+# Solaris doesn't support pe-agent as a package, so we use a modification of
 #  the PE curl-based installation
-class pe_agent::solaris inherits pe_agent {
+class puppet_ent_agent::solaris inherits puppet_ent_agent {
   if $::pe_version != $version {
 
     case $::platform_tag {

@@ -1,4 +1,4 @@
-class pe_agent::config inherits pe_agent {
+class puppet_ent_agent::config inherits puppet_ent_agent {
 
   Ini_setting {
     ensure  => present,

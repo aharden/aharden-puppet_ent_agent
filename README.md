@@ -1,4 +1,4 @@
-#pe\_agent
+#puppet\_ent\_agent
 
 ####Table of Contents
 
@@ -10,26 +10,26 @@
 
 ##Overview
 
-The pe\_agent module installs, configures and manages the Puppet Enterprise Agent software and the pe-puppet service (the pe-mcollective components are managed by a different module).
+The puppet\_ent\_agent module installs, configures and manages the Puppet Enterprise Agent software and the pe-puppet service.
 
 ##Module Description
 
-The pe\_agent module is dependent on the PE Package Repositories (pe_repo classes) available on any Puppet Enterprise Master version 3.2 or greater. This module was designed so that PE users can easily upgrade their managed PE agents after a version upgrade of a deployment's PE server(s).
+The puppet\_ent\_agent module is dependent on the PE Package Repositories (pe_repo classes) available on any Puppet Enterprise Master version 3.2 or greater. This module was designed so that PE users can easily upgrade their managed PE agents after a version upgrade of a deployment's PE server(s).
 
 ##Setup
 
-###What pe\_agent affects
+###What puppet\_ent\_agent affects
 
 * pe-agent package (and pe-\* packages related to PE)
 * /etc/puppetlabs/puppet/puppet.conf configuration file.
 * pe-puppet service.
 
-###Beginning with pe\_agent
+###Beginning with puppet\_ent\_agent
 
-`include '::pe_agent'` is enough to get you up and running.
+`include '::puppet_ent_agent'` is enough to get you up and running.
 
 ```puppet
-class { '::pe_agent':
+class { '::puppet_ent_agent':
   agent_caserver => 'puppetca.company.lan',
   windows_source => '\\myfileserver\pe-agent'
 }
@@ -37,7 +37,7 @@ class { '::pe_agent':
 
 ###Parameters
 
-The following parameters are available in the pe_agent module:
+The following parameters are available in the puppet_ent_agent module:
 
 ####`config`
 

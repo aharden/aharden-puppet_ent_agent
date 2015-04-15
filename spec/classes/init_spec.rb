@@ -1,7 +1,7 @@
 require 'spec_helper'
-describe 'pe_agent' do
+describe 'puppet_ent_agent' do
 
   context 'with defaults for all parameters' do
-    it { should contain_class('pe_agent') }
+    it { should contain_class('puppet_ent_agent') }
   end
 end

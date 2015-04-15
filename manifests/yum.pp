@@ -1,4 +1,4 @@
-class pe_agent::yum inherits pe_agent {
+class puppet_ent_agent::yum inherits puppet_ent_agent {
   if $package_ensure == 'latest' {
     $package_version = 'current'
   } else {

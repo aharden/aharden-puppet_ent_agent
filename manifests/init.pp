@@ -1,4 +1,4 @@
-# Class: pe_agent
+# Class: puppet_ent_agent
 #
 # This class manages the Puppet Enterprise (PE) agent.
 #
@@ -13,7 +13,7 @@
 #
 # Sample Usage:
 #
-class pe_agent (
+class puppet_ent_agent (
   $config = $pe_agent::params::config,
   $package_ensure = $pe_agent::params::package_ensure,
   $master = $pe_agent::params::master,
@@ -23,7 +23,7 @@ class pe_agent (
   $staging_dir = $pe_agent::params::staging_dir,
   $windows_source = $pe_agent::params::windows_source,
   $version = $pe_agent::params::version,
-) inherits pe_agent::params {
+) inherits puppet_ent_agent::params {
 
   validate_absolute_path($config)
   validate_string($package_ensure)
