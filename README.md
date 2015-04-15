@@ -63,7 +63,7 @@ the agent's catalog.
 
 Sets the server, ca_server, archive_file_server and environment settings in the agent's puppet.conf file.
 
-Defaults to undef and does not manage the settings unless overridden in node classification.
+The server settings default to undef and do not manage the settings unless overridden in node classification.  *agent_environment* defaults to 'production'.
 
 ####`staging_dir`
 
