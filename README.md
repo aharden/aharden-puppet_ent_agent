@@ -46,10 +46,12 @@ Path to the puppet.conf file (defaults to /etc/puppetlabs/puppet/puppet.conf)
 ####`package_ensure`
 
 Version of pe-agent to ensure, by default this is set to latest, and uses the 'current'
-package repository on the master. *this will auto upgrade agents if master is updated*
+package repository on the master. *This will auto upgrade agents if master is updated.*
 
 If you specify a version number, it may cause issues with general vs specific version
 differences (ie 3.2.0 vs 3.2.0.el6.1).
+
+See the related *version* variable documented below for AIX/Solaris/Windows.
 
 ####`master`
 
@@ -57,11 +59,11 @@ Hostname of apt/yum repository with pe-agent packages on it, assumes the hostnam
 with the required pe_repo classes properly applied to it.  Defaults to the PE master that compiled
 the agent's catalog.
 
-####`agent_server` & `agent_caserver` & `agent_environment`
+####`agent_server` & `agent_caserver` & `agent_fileserver` & `agent_environment`
 
-Sets the server, ca_server and environment settings on the agents puppet.conf file.
+Sets the server, ca_server, archive_file_server and environment settings in the agent's puppet.conf file.
 
-Defaults to nil and does not manage the settings unless overridden in node classification.
+Defaults to undef and does not manage the settings unless overridden in node classification.
 
 ####`staging_dir`
 
