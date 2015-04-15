@@ -36,11 +36,11 @@ class puppet_ent_agent::params {
   }
   $package_ensure = 'latest'
   $master = $::settings::server
-  $agent_server = 'nil'
-  $agent_caserver = 'nil'
-  $agent_fileserver = 'nil'
+  $agent_server = undef
+  $agent_caserver = undef
+  $agent_fileserver = undef
   $agent_environment = 'production'
   $staging_dir = '/tmp/puppet-enterprise-installer'
-  $windows_source = 'nil'
+  $windows_source = undef
   $version = $::pe_version
 }

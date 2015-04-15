@@ -24,28 +24,28 @@ class puppet_ent_agent::config inherits puppet_ent_agent {
     }
   }
 
-  if $agent_server != 'nil' {
+  if $agent_server {
     ini_setting { 'agent_server':
       setting => 'server',
       value   => $agent_server,
     }
   }
 
-  if $agent_caserver != 'nil' {
+  if $agent_caserver {
     ini_setting { 'agent_caserver':
       setting => 'ca_server',
       value   => $agent_caserver,
     }
   }
 
-  if $agent_fileserver != 'nil' {
+  if $agent_fileserver {
     ini_setting { 'agent_fileserver':
       setting => 'archive_file_server',
       value   => $agent_fileserver,
     }
   }
 
-  if $agent_environment != 'nil' {
+  if $agent_environment {
     ini_setting { 'agent_environment':
       section => 'agent',
       setting => 'environment',

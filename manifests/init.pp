@@ -35,8 +35,8 @@ class puppet_ent_agent (
   validate_string($windows_source)
   validate_string($version)
 
-  class { '::pe_agent::install': } ->
-  class { '::pe_agent::config': } ->
-  class { '::pe_agent::service': }
+  class { '::puppet_ent_agent::install': } ->
+  class { '::puppet_ent_agent::config': } ->
+  class { '::puppet_ent_agent::service': }
 
 }
