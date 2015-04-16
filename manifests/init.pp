@@ -14,15 +14,15 @@
 # Sample Usage:
 #
 class puppet_ent_agent (
-  $config            = $pe_agent::params::config,
-  $package_ensure    = $pe_agent::params::package_ensure,
-  $master            = $pe_agent::params::master,
-  $agent_server      = $pe_agent::params::agent_servername,
-  $agent_caserver    = $pe_agent::params::agent_caservername,
-  $agent_environment = $pe_agent::params::agent_environment,
-  $staging_dir       = $pe_agent::params::staging_dir,
-  $windows_source    = $pe_agent::params::windows_source,
-  $version           = $pe_agent::params::version,
+  $config            = $puppet_ent_agent::params::config,
+  $package_ensure    = $puppet_ent_agent::params::package_ensure,
+  $master            = $puppet_ent_agent::params::master,
+  $agent_server      = $puppet_ent_agent::params::agent_servername,
+  $agent_caserver    = $puppet_ent_agent::params::agent_caservername,
+  $agent_environment = $puppet_ent_agent::params::agent_environment,
+  $staging_dir       = $puppet_ent_agent::params::staging_dir,
+  $windows_source    = $puppet_ent_agent::params::windows_source,
+  $version           = $puppet_ent_agent::params::version,
 ) inherits puppet_ent_agent::params {
 
   validate_absolute_path($config)
