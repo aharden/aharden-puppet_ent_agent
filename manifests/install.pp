@@ -16,6 +16,7 @@ class puppet_ent_agent::install inherits puppet_ent_agent {
       else {
         notify { 'Windows repository not available: source not defined.': }
       }
+    }
     default: {
       notify { "Unsupported OS family ${::osfamily}.": }
     }
