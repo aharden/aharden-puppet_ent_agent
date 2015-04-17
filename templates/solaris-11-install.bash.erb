@@ -3,9 +3,9 @@
 download_file() {
   source_file="https://<%= @master %>:8140/packages/current/<%= @platform_tag %>/${1?}"
   if hash curl >&/dev/null; then
-    curl --tlsv1 -sk "${source_file?}" -o "<%= staging_dir %>/${1?}"
+    curl --tlsv1 -sk "${source_file?}" -o "<%= @staging_dir %>/${1?}"
   elif hash wget >&/dev/null; then
-    wget --secure-protocol=TLSv1 --no-check-certificate --quiet "${source_file?}" -O "<%= staging_dir %>/${1?}"
+    wget --secure-protocol=TLSv1 --no-check-certificate --quiet "${source_file?}" -O "<%= @staging_dir %>/${1?}"
   else
     echo "Couldn't find curl or wget; unable to continue" >&2
     exit 1
@@ -15,7 +15,7 @@ download_file() {
 download_packages() {
   download_file "packages.txt"
 
-  for pkg in $(cat "<%= staging_dir %>/packages.txt"); do
+  for pkg in $(cat "<%= @staging_dir %>/packages.txt"); do
     download_file "${pkg?}"
   done
 }
@@ -34,8 +34,8 @@ create_repo() {
 
   pkgrepo set -s ${ips_repo?} publisher/prefix=puppetlabs.com
 
-  for pkg in $(cat "<%= staging_dir %>/packages.txt"); do
-    pkgrecv -s "<%= staging_dir %>/${pkg?}" -d ${ips_repo?} '*' > /dev/null
+  for pkg in $(cat "<%= @staging_dir %>/packages.txt"); do
+    pkgrecv -s "<%= @staging_dir %>/${pkg?}" -d ${ips_repo?} '*' > /dev/null
   done
 
   # If the puppetlabs.com publisher exists, it may have been put in place
@@ -56,7 +56,7 @@ install_agent() {
 
   # Package names are of the form pe-puppet-all@3.4.3.0,5.11-1.p5p
   # We only care about the bit before -all@...
-  pkg install $(sed 's/^\(pe-[a-z0-9-]*\)-[a-z0-9]*@.*$/\1/' "<%= staging_dir %>/packages.txt") > /dev/null
+  pkg install $(sed 's/^\(pe-[a-z0-9-]*\)-[a-z0-9]*@.*$/\1/' "<%= @staging_dir %>/packages.txt") > /dev/null
 
   /opt/puppet/bin/puppet resource service pe-puppet ensure=running enable=true
   /opt/puppet/bin/puppet resource service pe-mcollective ensure=running enable=true
