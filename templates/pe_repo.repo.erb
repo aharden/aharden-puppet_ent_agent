@@ -1,0 +1,8 @@
+[puppetlabs-pepackages]
+name=Puppet Labs PE Packages <%= @version %> - <%= @platform_tag %>
+baseurl=https://<%= @master %>:8140/packages/current/<%= @platform_tag %>
+enabled=1
+gpgcheck=1
+sslverify=False
+proxy=_none_
+gpgkey=https://<%= @master %>:8140/packages/GPG-KEY-puppetlabs
