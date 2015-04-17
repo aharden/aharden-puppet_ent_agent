@@ -97,5 +97,5 @@ the OS families and architectures of all nodes managed in your infrastructure.
 Windows support requires the MSI installers for the PE Agent for Windows to be hosted
 outside of the PE environment.
 
-AIX, Debian, RedHat, and Windows OS Families have been tested.  Solaris testing is in
-progress.
+AIX, Debian/Ubuntu, and Windows OS Families have been tested.  Solaris testing is in
+progress.  RedHat support with yumrepo isn't possible on PE 3.3 due to bug PUP-2271.
