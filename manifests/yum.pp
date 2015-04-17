@@ -1,4 +1,8 @@
+# manages yumrepo for RH-Linux-based pe_repos
+# note that bug PUP-2271 makes this incompatible with PE 3.3
 class puppet_ent_agent::yum inherits puppet_ent_agent {
+  $master         = $::puppet_ent_agent::master
+  $package_ensure = $::puppet_ent_agent::package_ensure
 
   if $package_ensure == 'latest' {
     $package_version = 'current'

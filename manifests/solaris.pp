@@ -2,8 +2,10 @@
 # Solaris doesn't support pe-agent as a package, so we use a modification of
 #  the PE curl-based installation
 class puppet_ent_agent::solaris inherits puppet_ent_agent {
-  if $::pe_version != $version {
+  $staging_dir = $::puppet_ent_agent::staging_dir
+  $version     = $::puppet_ent_agent::version
 
+  if $::pe_version != $version {
     case $::platform_tag {
       'solaris-10-i386','solaris-10-sparc' : { $osversion = '10'}
       'solaris-11-i386','solaris-11-sparc' : { $osversion = '11'}

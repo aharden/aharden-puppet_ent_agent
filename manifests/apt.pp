@@ -1,4 +1,8 @@
+# manages apt repo based on debian/ubuntu pe_repos
 class puppet_ent_agent::apt inherits puppet_ent_agent {
+  $master         = $::puppet_ent_agent::master
+  $package_ensure = $::puppet_ent_agent::package_ensure
+
   if $package_ensure == 'latest' {
     $package_version = 'current'
   } else {

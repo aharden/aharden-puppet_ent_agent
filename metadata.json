@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "author": "aharden",
   "summary": "Management of Puppet Enterprise agent.",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "source": "https://github.com/aharden/aharden-puppet_ent_agent",
   "project_page": "https://github.com/aharden/aharden-puppet_ent_agent",
   "issues_url": "https://github.com/aharden/aharden-puppet_ent_agent/issues",

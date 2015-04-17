@@ -3,6 +3,9 @@
 #  to hold the PE agent MSIs, which are installed by the Windows package
 #  provider
 class puppet_ent_agent::windows inherits puppet_ent_agent {
+  $version        = $::puppet_ent_agent::version
+  $windows_source = $::puppet_ent_agent::windows_source
+
   case $::architecture {
     'x86': {
       $package_msi  = "puppet-enterprise-${version}.msi"
