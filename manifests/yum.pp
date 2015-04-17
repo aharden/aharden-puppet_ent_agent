@@ -7,14 +7,17 @@ class puppet_ent_agent::yum inherits puppet_ent_agent {
     $package_version = $package_ensure
   }
 
-  #patch bug PUP-2271 if it's there on PE 3.3
-  #if ($::pe_major_version == '3' and $::pe_minor_version == '3') {
-    file_line { 'patch bug PUP-2271':
-      path  => '/opt/puppet/lib/ruby/site_ruby/1.9.1/puppet/type/yumrepo.rb',
-      match => "      next if value.to_s == 'absent'",
-      line  => '      next if value.to_s =~ /^(absent|_none_)$/',
+  #patch bug PUP-2271 if it's there on PE 3.3 by updating yumrepo.rb
+  if ($::pe_major_version == '3' and $::pe_minor_version == '3') {
+    file { 'patch bug PUP-2271':
+      ensure => 'file',
+      path   => '/opt/puppet/lib/ruby/site_ruby/1.9.1/puppet/type/yumrepo.rb',
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0644',
+      source => "puppet:///modules/${module_name}/puppet-enterprise.gpg.key",
     }
-  #}
+  }
 
   yumrepo { 'puppetlabs-pepackages':
     baseurl   => "https://${master}:8140/packages/${package_version}/${::platform_tag}",
