@@ -12,7 +12,7 @@ class puppet_ent_agent::yum inherits puppet_ent_agent {
     enabled   => true,
     gpgcheck  => true,
     gpgkey    => "https://${master}:8140/packages/GPG-KEY-puppetlabs",
-    #proxy     => '_none_',
+    proxy     => '_none_',
     sslverify => 'False',
     before    => Package['pe-agent'],
   }
