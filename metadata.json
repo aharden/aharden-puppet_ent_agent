@@ -9,7 +9,7 @@
   "issues_url": "https://github.com/aharden/aharden-puppet_ent_agent/issues",
   "operatingsystem_support": [
     {
-      "operatingsystem": "AIX"
+      "operatingsystem": "AIX",
       "operatingsystemrelease": [
         "5.3",
         "6.1",
