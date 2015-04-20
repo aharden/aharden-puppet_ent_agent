@@ -1,6 +1,6 @@
 {
   "name": "aharden-puppet_ent_agent",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "aharden",
   "summary": "Management of Puppet Enterprise agent.",
   "license": "Apache-2.0",
@@ -10,6 +10,11 @@
   "operatingsystem_support": [
     {
       "operatingsystem": "AIX"
+      "operatingsystemrelease": [
+        "5.3",
+        "6.1",
+        "7.1"
+      ]
     },
     {
       "operatingsystem": "Debian",
@@ -20,6 +25,10 @@
     },
     {
       "operatingsystem": "Solaris"
+      "operatingsystemrelease": [
+        "10",
+        "11"
+      ]
     },
     {
       "operatingsystem": "Ubuntu",
@@ -27,6 +36,38 @@
         "10.04",
         "12.04",
         "14.04"
+      ]
+    },
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "OracleLinux",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "Scientific",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
       ]
     },
     {
