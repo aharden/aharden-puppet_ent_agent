@@ -98,4 +98,5 @@ Windows support requires the MSI installers for the PE Agent for Windows to be h
 outside of the PE environment.
 
 AIX, Debian/Ubuntu, and Windows OS Families have been tested.  Solaris testing is in
-progress.  RedHat support with yumrepo isn't possible on PE 3.3 due to bug PUP-2271.
+progress.  RedHat support with yumrepo is potentially problematic on PE <= 3.3 due to
+bug PUP-2271.
