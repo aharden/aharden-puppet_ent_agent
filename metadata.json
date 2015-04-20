@@ -24,7 +24,7 @@
       ]
     },
     {
-      "operatingsystem": "Solaris"
+      "operatingsystem": "Solaris",
       "operatingsystemrelease": [
         "10",
         "11"
