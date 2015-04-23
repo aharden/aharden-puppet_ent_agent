@@ -7,7 +7,7 @@ class puppet_ent_agent::install inherits puppet_ent_agent {
 
   case $::osfamily {
     'AIX'    : { include ::puppet_ent_agent::aix }
-    'Debian','RedHat' : 
+    'Debian','RedHat' : {
       package { 'pe-agent':
         ensure  => $package_ensure,
       }
