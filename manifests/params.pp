@@ -13,7 +13,7 @@
 # - $staging_dir: temp directory to use on AIX/Solaris
 # - $windows_source: UNC path to file share hosting Windows PE MSI installers
 # - $version: must pass version number for PE windows package provider and AIX
-#   and Solaris install methods - defaults to PE master version
+#   and Solaris install methods - defaults to current PE agent version
 #
 # Actions:
 #
