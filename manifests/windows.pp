@@ -3,6 +3,7 @@
 #  to hold the PE agent MSIs, which are installed by the Windows package
 #  provider
 class puppet_ent_agent::windows inherits puppet_ent_agent {
+  $master         = $::puppet_ent_agent::master
   $version        = $::puppet_ent_agent::version
   $windows_source = $::puppet_ent_agent::windows_source
 
@@ -23,6 +24,6 @@ class puppet_ent_agent::windows inherits puppet_ent_agent {
   package { $package_name:
     ensure          => $version,
     source          => "${windows_source}\\${package_msi}",
-    install_options => ["PUPPET_MASTER_SERVER=${::settings::ca_server}"],
+    install_options => ["PUPPET_MASTER_SERVER=${master}"],
   }
 }
