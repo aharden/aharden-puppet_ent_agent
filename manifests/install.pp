@@ -1,6 +1,6 @@
 # manages upgrades of Puppet Enterprise agent when needed
 class puppet_ent_agent::install inherits puppet_ent_agent {
-  $package_ensure = $::puppet_ent_agent::windows_source
+  $package_ensure = $::puppet_ent_agent::package_ensure
   $windows_source = $::puppet_ent_agent::windows_source
 
   include ::puppet_ent_agent::repo
