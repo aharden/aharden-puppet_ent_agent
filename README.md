@@ -51,7 +51,9 @@ package repository on the master. *This will auto upgrade agents if master is up
 If you specify a version number, it may cause issues with general vs specific version
 differences (ie 3.2.0 vs 3.2.0.el6.1).
 
-See the related *version* variable documented below for AIX/Solaris/Windows.
+To disable updating, set this to 'present'.
+
+AIX/Solaris/Windows don't support this: see the related *version* variable documented below.
 
 ####`master`
 
@@ -80,10 +82,10 @@ UNC path to the files for multi-site deployments.
 
 ####`version`
 
-The desired version of the PE agent to install.  This is applicable to the AIX,
-Solaris, and Windows agents since they don't support package => latest.  This
-defaults to the version of PE on the agent (which means agent upgrades are armed
-unless a newer version is set in the class declaration or hieradata).
+On AIX/Solaris/Windows: The desired version of the PE agent to install.  These OS families' 
+native package providers don't support `ensure => latest`.  This parameter defaults to the 
+version of the running PE agent (which means agent upgrades aren't armed unless a 
+newer version is set in the class declaration or hieradata).
 
 
 
