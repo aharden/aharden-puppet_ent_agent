@@ -17,8 +17,9 @@ class puppet_ent_agent (
   $config            = $puppet_ent_agent::params::config,
   $package_ensure    = $puppet_ent_agent::params::package_ensure,
   $master            = $puppet_ent_agent::params::master,
-  $agent_server      = $puppet_ent_agent::params::agent_servername,
-  $agent_caserver    = $puppet_ent_agent::params::agent_caservername,
+  $agent_server      = $puppet_ent_agent::params::agent_server,
+  $agent_caserver    = $puppet_ent_agent::params::agent_caserver,
+  $agent_fileserver  = $puppet_ent_agent::params::agent_fileserver,
   $agent_environment = $puppet_ent_agent::params::agent_environment,
   $staging_dir       = $puppet_ent_agent::params::staging_dir,
   $windows_source    = $puppet_ent_agent::params::windows_source,
@@ -30,6 +31,7 @@ class puppet_ent_agent (
   validate_string($master)
   validate_string($agent_server)
   validate_string($agent_caserver)
+  validate_string($agent_fileserver)
   validate_string($agent_environment)
   validate_string($staging_dir)
   validate_string($windows_source)
