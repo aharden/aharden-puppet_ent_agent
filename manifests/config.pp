@@ -15,6 +15,14 @@ class puppet_ent_agent::config inherits puppet_ent_agent {
   }
 
   case $::osfamily {
+    'AIX': {
+      file { $config:
+        ensure => file,
+        owner  => 'root',
+        group  => 'system',
+        mode   => '0600',
+      }
+    }
     'windows': {
       file { $config:
         ensure => file,
