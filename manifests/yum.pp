@@ -16,7 +16,7 @@ class puppet_ent_agent::yum inherits puppet_ent_agent {
     baseurl   => "https://${master}:8140/packages/${package_version}/${::platform_tag}",
     descr     => "Puppet Labs PE Packages version: ${package_version}",
     enabled   => false,
-    ensure    => absent,
+    ensure    => present,
     gpgcheck  => true,
     gpgkey    => "https://${master}:8140/packages/GPG-KEY-puppetlabs",
     sslverify => 'False',
