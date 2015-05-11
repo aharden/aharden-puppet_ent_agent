@@ -29,7 +29,7 @@ class puppet_ent_agent::yum inherits puppet_ent_agent {
     ini_file { "/etc/yum.repos.d/${repo_name}.repo":
       ensure  => present,
       section => $repo_name,
-      key     => 'proxy',
+      setting => 'proxy',
       value   => '_none_',
       require => Yumrepo[$repo_name],
     }
