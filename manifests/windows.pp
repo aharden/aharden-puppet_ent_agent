@@ -4,6 +4,7 @@
 #  provider
 # Note: Must use 32-bit installer on Windows Server 2003 64-bit:
 #  https://docs.puppetlabs.com/pe/latest/install_windows.html#installdir
+# Note: PE has only a 32-bit installer until v3.7.0
 class puppet_ent_agent::windows inherits puppet_ent_agent {
   $master         = $::puppet_ent_agent::master
   $version        = $::puppet_ent_agent::version
@@ -15,14 +16,22 @@ class puppet_ent_agent::windows inherits puppet_ent_agent {
       $package_name = 'Puppet Enterprise'
     }
     'x64': {
-      case $::kernelversion {
-        '5.2.3790': { # must install 32-bit on WS2003 x64
-          $package_msi  = "puppet-enterprise-${version}.msi"
-          $package_name = 'Puppet Enterprise'
-        }
-        default: {
-          $package_msi  = "puppet-enterprise-${version}-x64.msi"
-          $package_name = 'Puppet Enterprise (64-bit)'
+      # only 32-bit installers on PE 3.3 and earlier
+      $version_array = split($version, ',')
+      if ($version_array[0] <= '3' and $version_array[1] <= '3') {
+        $package_msi  = "puppet-enterprise-${version}.msi"
+        $package_name = 'Puppet Enterprise'
+      }
+      else {
+        case $::kernelversion {
+          '5.2.3790': { # must install 32-bit on WS2003 x64
+            $package_msi  = "puppet-enterprise-${version}.msi"
+            $package_name = 'Puppet Enterprise'
+          }
+          default: {
+            $package_msi  = "puppet-enterprise-${version}-x64.msi"
+            $package_name = 'Puppet Enterprise (64-bit)'
+          }
         }
       }
     }
