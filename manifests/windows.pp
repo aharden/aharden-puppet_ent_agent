@@ -17,7 +17,7 @@ class puppet_ent_agent::windows inherits puppet_ent_agent {
     }
     'x64': {
       # only 32-bit installers on PE 3.3 and earlier
-      $version_array = split($version, ',')
+      $version_array = split($version, '[.]')
       if ($version_array[0] <= '3' and $version_array[1] <= '3') {
         $package_msi  = "puppet-enterprise-${version}.msi"
         $package_name = 'Puppet Enterprise'
