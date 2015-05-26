@@ -80,11 +80,17 @@ default file names are assumed.  The author recommends the use of Distributed Fi
 Services (DFS) namespaces with multiple folder targets to efficiently provide a single
 UNC path to the files for multi-site deployments.
 
+####`windows_task_min`
+
+The number of minutes to delay a scheduled task that will be configured to run an
+upgrade of the PE agent on a managed Windows system, if required.  Defaults to 10
+minutes.
+
 ####`version`
 
-On AIX/Solaris/Windows: The desired version of the PE agent to install.  These OS families' 
-native package providers don't support `ensure => latest`.  This parameter defaults to the 
-version of the running PE agent (which means agent upgrades aren't armed unless a 
+On AIX/Solaris/Windows: The desired version of the PE agent to install.  These OS families'
+native package providers don't support `ensure => latest`.  This parameter defaults to the
+version of the running PE agent (which means agent upgrades aren't armed unless a
 newer version is set in the class declaration or hieradata).
 
 
@@ -100,5 +106,6 @@ Windows support requires the MSI installers for the PE Agent for Windows to be h
 outside of the PE environment.
 
 AIX, Debian/Ubuntu, and Windows OS Families have been tested.  Solaris testing is in
-progress.  RedHat support with yumrepo is potentially problematic on PE <= 3.3 due to
-bug PUP-2271.
+progress.  Windows support was changed to a scheduled task after it was found that
+managing as a Puppet package resource produced unpredicable behavior and is not
+supported by Puppet Labs.
