@@ -84,14 +84,14 @@ UNC path to the files for multi-site deployments.
 
 The number of minutes to delay a scheduled task that will be configured to run an
 upgrade of the PE agent on a managed Windows system, if required.  Defaults to 10
-minutes.
+minutes.  This is meant to allow an upgrade of the PE agent while it's not running
+a catalog.
 
 ####`version`
 
-On AIX/Solaris/Windows: The desired version of the PE agent to install.  These OS families'
-native package providers don't support `ensure => latest`.  This parameter defaults to the
-version of the running PE agent (which means agent upgrades aren't armed unless a
-newer version is set in the class declaration or hieradata).
+On AIX/Solaris/Windows: The desired version of the PE agent to install.  This parameter
+defaults to the version of the running PE agent (which means agent upgrades aren't
+armed unless a newer version is set in the class declaration or hieradata).
 
 
 
@@ -103,9 +103,9 @@ of this module will fail.  Best practice is to add pe_repo classes corresponding
 the OS families and architectures of all nodes managed in your infrastructure.
 
 Windows support requires the MSI installers for the PE Agent for Windows to be hosted
-outside of the PE environment.
+outside of the PE environment.  PowerShell is required for upgrade support.
 
-AIX, Debian/Ubuntu, and Windows OS Families have been tested.  Solaris testing is in
-progress.  Windows support was changed to a scheduled task after it was found that
-managing as a Puppet package resource produced unpredicable behavior and is not
-supported by Puppet Labs.
+AIX, Debian/Ubuntu, and Windows OS Families have been tested.  RedHat and Solaris
+testing is in progress.  Windows support was changed to a scheduled task after it was
+found that managing the PE agent as a Puppet package resource produced unpredicable
+behavior and is not supported by Puppet Labs.
