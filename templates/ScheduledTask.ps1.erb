@@ -13,19 +13,27 @@ $scheduledTask = & C:\Windows\system32\schtasks.exe /query /V /FO list /TN "pupp
 
 if ( $ensure -eq "present" ) {
   $thisMin = [int](Get-Date -format %m)
+  $thisHour = [int](Get-Date -format %H)
+  $delay = <%= @windows_task_min %>
+  $timeMin = $thisMin + $delay
 
-  if ( ($thisMin + <%= @windows_task_min %>) -ge 59) {
-    $thisMin = 0
-    $delay = <%= @windows_task_min %> + 1
-  } else {
-    $timeMin = $thisMin
-    $delay = <%= @windows_task_min %>
+  if ( $timeMin -ge 60) {
+    $timeMin = $timeMin - 60
+    $thisHour++
   }
 
-  $plusTime = ([string]($timeMin + $delay)).PadLeft(1,'0')
-  $thisHour = (Get-Date -format HH)
+  if ( $thisHour -ge 24) {
+    $timeHour = $thisHour - 24
+  } else {
+    $timeHour = $thisHour
+  }
 
-  $startTime = "$thisHour`:$plusTime"
+  # intentionally not dealing with date flip - start once doesn't need a date
+
+  $myMin = ([string]($timeMin)).PadLeft(2,'0')
+  $myHour = ([string]($timeHour)).PadLeft(2,'0')
+
+  $startTime = "$myHour`:$myMin"
 
   if ( $scheduledTask -eq $null ) {
     schtasks /create /TN "puppet upgrade task" /TR <%= @windows_cmd %> /SC Once /ST $startTime /RU SYSTEM

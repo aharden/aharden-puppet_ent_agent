@@ -39,7 +39,7 @@ class puppet_ent_agent::windows inherits puppet_ent_agent {
 
   if $::pe_version != $version {
     # run upgrade outside of pe_agent run
-    $windows_cmd = 'c:\windows\temp\installPEagent.cmd'
+    $windows_cmd = 'C:/Windows/Temp/installPEagent.cmd'
 
     file { 'UpgradePEAgent script':
       ensure  => file,
@@ -68,7 +68,7 @@ class puppet_ent_agent::windows inherits puppet_ent_agent {
       refreshonly => true,
     }
   } else {
-
+    # clean up
     file { 'UpgradePEAgent script':
       ensure => absent,
       path   => $windows_cmd,
