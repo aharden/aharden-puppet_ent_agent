@@ -8,12 +8,13 @@
 # Includes code from https://forge.puppetlabs.com/opentable/puppetversion
 # (Thanks, opentable!)
 class puppet_ent_agent::windows inherits puppet_ent_agent {
+  $master           = $::puppet_ent_agent::master
   $version          = $::puppet_ent_agent::version
   $windows_source   = $::puppet_ent_agent::windows_source
   $windows_task_min = $::puppet_ent_agent::windows_task_min
 
   $windows_cmd = 'C:/Windows/Temp/installPEagent.cmd'
-  
+
   case $::architecture {
     'x86': {
       $package_msi  = "puppet-enterprise-${version}.msi"
