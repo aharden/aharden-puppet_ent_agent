@@ -12,6 +12,8 @@ class puppet_ent_agent::windows inherits puppet_ent_agent {
   $windows_source   = $::puppet_ent_agent::windows_source
   $windows_task_min = $::puppet_ent_agent::windows_task_min
 
+  $windows_cmd = 'C:/Windows/Temp/installPEagent.cmd'
+  
   case $::architecture {
     'x86': {
       $package_msi  = "puppet-enterprise-${version}.msi"
@@ -39,7 +41,6 @@ class puppet_ent_agent::windows inherits puppet_ent_agent {
 
   if $::pe_version != $version {
     # run upgrade outside of pe_agent run
-    $windows_cmd = 'C:/Windows/Temp/installPEagent.cmd'
 
     file { 'UpgradePEAgent script':
       ensure  => file,
