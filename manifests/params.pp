@@ -12,6 +12,7 @@
 # - $agent_environment: desired default environment
 # - $staging_dir: temp directory to use on AIX/Solaris
 # - $windows_source: UNC path to file share hosting Windows PE MSI installers
+# _ $windows_task_min: (int) will schedule a task to run upgrade in x mins
 # - $version: must pass version number for PE windows package provider and AIX
 #   and Solaris install methods - defaults to current PE agent version
 #
@@ -42,5 +43,6 @@ class puppet_ent_agent::params {
   $agent_environment = 'production'
   $staging_dir = '/tmp/puppet-enterprise-installer'
   $windows_source = undef
+  $windows_task_min = '10' # run a scheduled task to upgrade the agent in 10 mins
   $version = $::pe_version
 }
