@@ -29,10 +29,12 @@ class puppet_ent_agent::apt inherits puppet_ent_agent {
   }
 
   apt::source { 'puppetlabs-pepackages':
-    location    => "https://${master}:8140/packages/${package_version}/${::platform_tag}",
-    repos       => './',
-    include_src => false,
-    release     => '',     # release name not required
-    before      => Package['pe-agent'],
+    location => "https://${master}:8140/packages/${package_version}/${::platform_tag}",
+    repos    => './',
+    include  => {
+      'src' => false,
+    },
+    release  => '',     # release name not required
+    before   => Package['pe-agent'],
   }
 }
