@@ -9,7 +9,7 @@
 # (Thanks, opentable!)
 class puppet_ent_agent::windows inherits puppet_ent_agent {
   $master           = $::puppet_ent_agent::master
-  $version          = $::puppet_ent_agent::package_ensure
+  $version          = $::puppet_ent_agent::ensure
   $windows_source   = $::puppet_ent_agent::windows_source
   $windows_task_min = $::puppet_ent_agent::windows_task_min
 

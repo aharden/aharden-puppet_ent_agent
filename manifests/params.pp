@@ -35,13 +35,13 @@ class puppet_ent_agent::params {
   else {
     $config = '/etc/puppetlabs/puppet/puppet.conf'
   }
-  $package_ensure = 'latest'
-  $master = $::settings::server
-  $agent_server = undef
-  $agent_caserver = undef
-  $agent_fileserver = undef
+  $ensure            = 'latest'
+  $master            = $::settings::server
+  $agent_server      = undef
+  $agent_caserver    = undef
+  $agent_fileserver  = undef
   $agent_environment = 'production'
-  $staging_dir = '/tmp/puppet-enterprise-installer'
-  $windows_source = undef
-  $windows_task_min = '10' # run a scheduled task to upgrade the agent in 10 mins
+  $staging_dir       = '/tmp/puppet-enterprise-installer'
+  $windows_source    = undef
+  $windows_task_min  = '10' # run a scheduled task to upgrade PE agent in x mins
 }

@@ -45,7 +45,7 @@ Path to the puppet.conf file.  Defaults:
 * Unix/Linux: '/etc/puppetlabs/puppet/puppet.conf'
 * Windows: '${appdata}/PuppetLabs/puppet/etc/puppet.conf'
 
-####`package_ensure`
+####`ensure`
 
 Default setting: 'latest'
 
@@ -60,7 +60,7 @@ differences (ie 3.2.0 vs 3.2.0.el6.1).
 
 #####For AIX/Solaris/Windows OS families:
 These OS's don't support packages; if managing agent installation on them, set
-package_ensure to the desired version of the PE agent.
+`ensure` to the desired version of the PE agent.
 
 ####`master`
 

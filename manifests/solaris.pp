@@ -3,7 +3,7 @@
 #  the PE curl-based installation
 class puppet_ent_agent::solaris inherits puppet_ent_agent {
   $staging_dir = $::puppet_ent_agent::staging_dir
-  $version     = $::puppet_ent_agent::package_ensure
+  $version     = $::puppet_ent_agent::ensure
 
   if $::pe_version != $version {
     case $::platform_tag {
