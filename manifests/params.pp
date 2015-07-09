@@ -44,5 +44,4 @@ class puppet_ent_agent::params {
   $staging_dir = '/tmp/puppet-enterprise-installer'
   $windows_source = undef
   $windows_task_min = '10' # run a scheduled task to upgrade the agent in 10 mins
-  $version = $::pe_version
 }

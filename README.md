@@ -41,19 +41,26 @@ The following parameters are available in the puppet_ent_agent module:
 
 ####`config`
 
-Path to the puppet.conf file (defaults to /etc/puppetlabs/puppet/puppet.conf)
+Path to the puppet.conf file.  Defaults:
+* Unix/Linux: '/etc/puppetlabs/puppet/puppet.conf'
+* Windows: '${appdata}/PuppetLabs/puppet/etc/puppet.conf'
 
 ####`package_ensure`
 
-Version of pe-agent to ensure, by default this is set to latest, and uses the 'current'
-package repository on the master. *This will auto upgrade agents if master is updated.*
+Default setting: 'latest'
+
+To disable PE agent upgrades, set this to 'present'.
+
+##For Debian/RedHat OS families:
+Version of pe-agent to ensure, by default will use the 'current' package
+repository on the master. *This will auto-upgrade agents if master is updated.*
 
 If you specify a version number, it may cause issues with general vs specific version
 differences (ie 3.2.0 vs 3.2.0.el6.1).
 
-To disable updating, set this to 'present'.
-
-AIX/Solaris/Windows don't support this: see the related *version* variable documented below.
+##For AIX/Solaris/Windows OS families:
+These OS's don't support packages; if managing agent installation on them, set
+package_ensure to the desired version of the PE agent.
 
 ####`master`
 
@@ -87,13 +94,6 @@ upgrade of the PE agent on a managed Windows system, if required.  Defaults to 1
 minutes.  This is meant to allow an upgrade of the PE agent while it's not running
 a catalog.
 
-####`version`
-
-On AIX/Solaris/Windows: The desired version of the PE agent to install.  This parameter
-defaults to the version of the running PE agent (which means agent upgrades aren't
-armed unless a newer version is set in the class declaration or hieradata).
-
-
 
 ##Limitations
 
@@ -107,5 +107,5 @@ outside of the PE environment.  PowerShell is required for upgrade support.
 
 AIX, Debian/Ubuntu, and Windows OS Families have been tested.  RedHat and Solaris
 testing is in progress.  Windows support was changed to a scheduled task after it was
-found that managing the PE agent as a Puppet package resource produced unpredicable
+found that managing the PE agent as a Puppet package resource produced unpredictable
 behavior and is not supported by Puppet Labs.
