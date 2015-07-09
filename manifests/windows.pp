@@ -78,7 +78,8 @@ class puppet_ent_agent::windows inherits puppet_ent_agent {
       path   => $windows_cmd,
     }
 
-    # Yes we still have to exec to remove because scheduled_task { ensure => absent } doesn't work!
+    # Yes we still have to exec to remove because scheduled_task
+    # { ensure => absent } doesn't work!
     exec { 'remove scheduled task':
       command => 'C:\Windows\system32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -NonInteractive -NoLogo -ExecutionPolicy Bypass -File C:\Windows\Temp\ScheduledTask.ps1 -ensure absent',
       before  => File['ScheduleTask script'],
