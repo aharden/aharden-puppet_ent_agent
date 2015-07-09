@@ -51,14 +51,14 @@ Default setting: 'latest'
 
 To disable PE agent upgrades, set this to 'present'.
 
-##For Debian/RedHat OS families:
+#####For Debian/RedHat OS families:
 Version of pe-agent to ensure, by default will use the 'current' package
 repository on the master. *This will auto-upgrade agents if master is updated.*
 
 If you specify a version number, it may cause issues with general vs specific version
 differences (ie 3.2.0 vs 3.2.0.el6.1).
 
-##For AIX/Solaris/Windows OS families:
+######For AIX/Solaris/Windows OS families:
 These OS's don't support packages; if managing agent installation on them, set
 package_ensure to the desired version of the PE agent.
 
