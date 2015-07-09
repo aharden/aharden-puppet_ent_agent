@@ -49,12 +49,14 @@ class puppet_ent_agent::windows inherits puppet_ent_agent {
       content => template("${module_name}/installPEagent.cmd.erb"),
     }
 
-    # Using another powershell script to create a scheduled task to run the upgrade script.
+    # Using another powershell script to create a scheduled task to run the
+    # upgrade script.
     #
-    # The scheduled_task resource is not being used here because there is no way to pass
-    # local time to the start_time parameter. Using the strftime from stdlib will use the
-    # time at catalog compilation (the time of the master) which will cause problems if you
-    # clients run in a differne timezone to the master
+    # The scheduled_task resource is not being used here because there is no
+    # way to pass local time to the start_time parameter. Using the strftime
+    # from stdlib will use the time at catalog compilation (the time of the
+    # master) which will cause problems if your clients run in a different
+    # timezone than the master
 
     file { 'ScheduleTask script':
       ensure  => present,
