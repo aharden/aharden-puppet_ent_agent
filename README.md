@@ -58,7 +58,7 @@ repository on the master. *This will auto-upgrade agents if master is updated.*
 If you specify a version number, it may cause issues with general vs specific version
 differences (ie 3.2.0 vs 3.2.0.el6.1).
 
-######For AIX/Solaris/Windows OS families:
+#####For AIX/Solaris/Windows OS families:
 These OS's don't support packages; if managing agent installation on them, set
 package_ensure to the desired version of the PE agent.
 
