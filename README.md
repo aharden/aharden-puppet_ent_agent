@@ -57,7 +57,7 @@ repository on the master. *This will auto-upgrade agents if master is updated.*
 
 ######Advanced Usage:
 If you specify a version number, it must match the package's versioning. E.g.,
-PE agent 3.7.2 package version for Ubuntu is '3.7.2-1ubuntu1'.  The
+PE agent 3.7.2 package version for Ubuntu is '3.7.2-1puppet1'.  The
 `repo_version` parameter must be specified if a package version number is used.
 
 #####For AIX/Solaris/Windows OS families:

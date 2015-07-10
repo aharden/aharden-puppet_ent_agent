@@ -6,6 +6,7 @@ class puppet_ent_agent::apt inherits puppet_ent_agent {
   $repo_version = $::puppet_ent_agent::repo_version
 
   if $ensure == 'latest' { $repo_version = 'current' }
+  if $::architecture == 'x64' { $myarch = 'amd64' }
 
   file { '/etc/apt/puppet-enterprise.gpg.key':
     ensure => 'file',
@@ -29,10 +30,10 @@ class puppet_ent_agent::apt inherits puppet_ent_agent {
   apt::source { $repo_name:
     location => "https://${master}:8140/packages/${repo_version}/${::platform_tag}",
     repos    => './',
+    architecture => $myarch,
     include  => {
       'src' => false,
     },
-    release  => $::lsbdistcodename,
     before    => Package['pe-agent'],
   }
 }
