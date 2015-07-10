@@ -29,8 +29,7 @@ class puppet_ent_agent::apt inherits puppet_ent_agent {
 
   apt::source { $repo_name:
     location => "https://${master}:8140/packages/${repo_version}/${::platform_tag}",
-    repos    => './',
-    architecture => $myarch,
+    #repos    => './',
     include  => {
       'src' => false,
     },
