@@ -1,5 +1,5 @@
 # Download bash script from pe_repo and run it
-class puppet_ent_agent::curl inherits puppet_ent_agent {
+class puppet_ent_agent::install::nix inherits puppet_ent_agent {
   $master      = $::puppet_ent_agent::master
   $staging_dir = $::puppet_ent_agent::staging_dir
   $version     = $::puppet_ent_agent::ensure
@@ -27,13 +27,6 @@ class puppet_ent_agent::curl inherits puppet_ent_agent {
       verbose            => false,
       nocheckcertificate => true,
     } ->
-#    file { "${staging_dir}/install.bash":
-#      ensure  => file,
-#      owner   => 'root',
-#      group   => $group,
-#      mode    => '0644',
-#      content => template("${module_name}/install.bash.erb"),
-#    } ->
     exec { "/bin/bash -e ${staging_dir}/install.bash":
       user => 'root',
     }

@@ -37,13 +37,11 @@ class puppet_ent_agent::params {
   }
   $ensure            = 'latest'
   $master            = $::settings::server
-  $repo_name         = 'puppetlabs-pepackages'
-  $repo_version      = undef
   $agent_server      = undef
   $agent_caserver    = undef
   $agent_fileserver  = undef
   $agent_environment = 'production'
-  $staging_dir       = '/tmp/puppet-enterprise-installer'
+  $staging_dir       = '/tmp'
   $windows_source    = undef
   $windows_task_min  = '10' # run a scheduled task to upgrade PE agent in x mins
 }

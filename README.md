@@ -21,7 +21,7 @@ The puppet\_ent\_agent module is dependent on the PE Package Repositories (pe_re
 ###What puppet\_ent\_agent affects
 
 * pe-agent package (and pe-\* packages related to PE)
-* /etc/puppetlabs/puppet/puppet.conf configuration file.
+* puppet.conf configuration file.
 * pe-puppet service.
 
 ###Beginning with puppet\_ent\_agent
@@ -31,6 +31,7 @@ The puppet\_ent\_agent module is dependent on the PE Package Repositories (pe_re
 ```puppet
 class { '::puppet_ent_agent':
   agent_caserver => 'puppetca.company.lan',
+  ensure         => '3.8.1'
   windows_source => '\\myfileserver\pe-agent'
 }
 ```
@@ -47,39 +48,20 @@ Path to the puppet.conf file.  Defaults:
 
 ####`ensure`
 
-Default setting: 'latest'
+Default setting: 'present'
 
-To disable PE agent upgrades, set this to 'present'.
+To disable PE agent upgrades, leave this set to 'present'.
 
-#####For Debian/RedHat OS families:
-Version of pe-agent to ensure, by default will use the 'current' package
-repository on the master. *This will auto-upgrade agents if master is updated.*
+To upgrade managed agents to a specific PE version, specify a PE agent version
+available on your pe_repo PE masters and/or Windows PE agent source.
 
-######Advanced Usage:
-If you specify a version number, it must match the package's versioning. E.g.,
-PE agent 3.7.2 package version for Ubuntu is '3.7.2-1puppet1'.  The
-`repo_version` parameter must be specified if a package version number is used.
-
-#####For AIX/Solaris/Windows OS families:
-These OS's don't support packages; if managing agent installation on them, set
-`ensure` to the desired version of the PE agent.
-
-####`repo_version`
-
-Only used on Debian/RedHat OS families when a package version number is
-specified in `ensure`.  Selects the pe_repo package repository to use; this
-version must already be present on the pe_repo server.  This module does not
-manage pe_repo.
-
-To use a version of the package repository other than the one linked to
-'current', set this parameter to the corresponding Puppet Enterprise release.  
-E.g., '3.7.2' for PE 3.7.2 agents.
+If the pe_repo package repository of the specified version is not present on
+the pe_repo server, the module will fail.  This module does not manage pe_repo.
 
 ####`master`
 
-Hostname of apt/yum repository with pe-agent packages on it, assumes the hostname is of a PE master
-with the required pe_repo classes properly applied to it.  Defaults to the PE master that compiled
-the agent's catalog.
+Hostname of a PE master with the required pe_repo classes properly applied to
+it.  Defaults to the PE master that compiled the agent's catalog.
 
 ####`agent_server` & `agent_caserver` & `agent_fileserver` & `agent_environment`
 
@@ -89,8 +71,8 @@ The server settings default to undef and do not manage the settings unless overr
 
 ####`staging_dir`
 
-The directory that will be used on AIX and Solaris hosts to temporarily hold the
-PE Agent installation files.  This defaults to PE's default: /tmp/puppet-enterprise-installer
+The directory that will be used on non-Windows hosts to temporarily hold the
+PE Agent installation script.  This defaults to '/tmp'.
 
 ####`windows_source`
 
@@ -119,6 +101,6 @@ Windows support requires the MSI installers for the PE Agent for Windows to be h
 outside of the PE environment.  PowerShell is required for upgrade support.
 
 AIX, Debian/Ubuntu, and Windows OS Families have been tested.  RedHat and Solaris
-testing is in progress.  Windows support was changed to a scheduled task after it was
-found that managing the PE agent as a Puppet package resource produced unpredictable
-behavior and is not supported by Puppet Labs.
+testing is in progress, but should work.  Windows support was changed to a scheduled
+task after it was found that managing the PE agent as a Puppet package resource produced
+unpredictable behavior and is not supported by Puppet Labs.

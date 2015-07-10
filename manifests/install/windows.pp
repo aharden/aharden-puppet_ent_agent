@@ -7,7 +7,7 @@
 # Note: PE has only a 32-bit installer until v3.7.0
 # Includes code from https://forge.puppetlabs.com/opentable/puppetversion
 # (Thanks, opentable!)
-class puppet_ent_agent::windows inherits puppet_ent_agent {
+class puppet_ent_agent::install::windows inherits puppet_ent_agent {
   $master           = $::puppet_ent_agent::master
   $version          = $::puppet_ent_agent::ensure
   $windows_source   = $::puppet_ent_agent::windows_source
