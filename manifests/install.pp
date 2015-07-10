@@ -7,11 +7,11 @@ class puppet_ent_agent::install inherits puppet_ent_agent {
     include ::puppet_ent_agent::repo
 
     case $::osfamily {
-      'AIX','Solaris','Windows': {
-        if ($ensure != 'present') and ($ensure != 'latest') {
+      'AIX','Debian','Solaris','Windows': {
+        if $ensure != 'latest' {
           case $::osfamily {
-            'AIX':     { include ::puppet_ent_agent::aix }
-            'Solaris': { include ::puppet_ent_agent::solaris }
+            'AIX','Debian','Solaris': { include ::puppet_ent_agent::nix }
+            #'Solaris': { include ::puppet_ent_agent::solaris }
             'windows': {
               if $windows_source {
                 include ::puppet_ent_agent::windows
@@ -27,7 +27,7 @@ class puppet_ent_agent::install inherits puppet_ent_agent {
           notify { "Must specify PE agent version on ${::osfamily}": }
         }
       }
-      'Debian','RedHat' : {
+      'RedHat' : {
         package { 'pe-agent':
           ensure  => $ensure,
         }

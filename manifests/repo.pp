@@ -6,7 +6,7 @@
 # is skipped
 class puppet_ent_agent::repo inherits puppet_ent_agent {
   case $::osfamily {
-    'Debian': { contain puppet_ent_agent::apt }
+    #'Debian': { contain puppet_ent_agent::apt }
     'Redhat': { contain puppet_ent_agent::yum }
     default:  {}
   }
