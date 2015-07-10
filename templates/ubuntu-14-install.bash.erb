@@ -1,0 +1,52 @@
+#!/bin/bash -e
+
+import_gpg_key() {
+  if hash curl >&/dev/null; then
+    curl --tlsv1 -sk https://<%= @master %>:8140/packages/GPG-KEY-puppetlabs | apt-key add -
+  elif hash wget >&/dev/null; then
+    wget --secure-protocol=TLSv1 -O - --no-check-certificate --quiet https://<%= @master %>:8140/packages/GPG-KEY-puppetlabs | apt-key add -
+  else
+    echo "Couldn't find curl or wget; unable to continue" >&2
+    exit 1
+  fi
+}
+
+setup_repo() {
+  apt-get update -qq
+  apt-get install --yes apt-transport-https
+
+  mkdir -p /etc/apt/sources.list.d /etc/apt/apt.conf.d
+  echo "deb https://<%= @master %>:8140/packages/3.7.2/<%= @platform_tag %> ./" >  /etc/apt/sources.list.d/puppet-enterprise-installer.list
+  echo -e "Acquire::https::<%= @master %>::Verify-Peer false;\nAcquire::http::Proxy::<%= @master %> DIRECT;" > /etc/apt/apt.conf.d/90pe-repo
+  import_gpg_key
+
+  apt-get update -qq
+}
+
+custom_puppet_configuration() {
+  # Parse optional pre-installation configuration of Puppet settings via
+  # command-line arguments. Arguments should be of the form
+  # <section>:<setting>=<value>
+  regex='(.*):(.*)=(.*)'
+  for entry in "$@"; do
+    if ! [[ "$entry" =~ $regex ]]; then
+      echo "WARNING: unable to interpret argument: ${entry}. Expected <section>:<setting>=<value>"
+    else
+      section=${BASH_REMATCH[1]}
+      setting=${BASH_REMATCH[2]}
+      value=${BASH_REMATCH[3]}
+      /opt/puppet/bin/puppet config set "$setting" "$value" --section "$section"
+    fi
+  done
+}
+
+install_agent() {
+
+  setup_repo
+
+  DEBIAN_FRONTEND=noninteractive apt-get install -y -o Apt::Get::Purge=false -o Dpkg::Options::='--force-confold' -o Dpkg::Options::='--force-confdef' --no-install-recommends pe-agent
+
+  /opt/puppet/bin/puppet resource service pe-puppet ensure=running enable=true
+}
+
+install_agent "$@"
