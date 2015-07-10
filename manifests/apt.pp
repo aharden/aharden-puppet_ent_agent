@@ -5,7 +5,6 @@ class puppet_ent_agent::apt inherits puppet_ent_agent {
   $repo_name = 'puppetlabs-pepackages'
 
   case $ensure {
-    'present': { $version = $::pe_version }
     'latest' : { $version = 'current' }
     default  : { $version = $ensure }
   }
@@ -36,6 +35,6 @@ class puppet_ent_agent::apt inherits puppet_ent_agent {
       'src' => false,
     },
     release  => '',     # release name not required
-    before   => Package['pe-agent'],
+    before    => Package['pe-agent'],
   }
 }

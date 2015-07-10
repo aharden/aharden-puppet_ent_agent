@@ -6,7 +6,6 @@ class puppet_ent_agent::yum inherits puppet_ent_agent {
   $repo_name = 'puppetlabs-pepackages'
 
   case $ensure {
-    'present': { $version = $::pe_version }
     'latest' : { $version = 'current' }
     default  : { $version = $ensure }
   }
