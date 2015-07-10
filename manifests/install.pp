@@ -8,7 +8,7 @@ class puppet_ent_agent::install inherits puppet_ent_agent {
       'windows': {
         if $windows_source {
           include ::puppet_ent_agent::install::windows
-        else {
+        } else {
           notify { 'Windows repository not available: source not defined.': }
         }
       }
