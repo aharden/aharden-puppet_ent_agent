@@ -42,7 +42,7 @@ class puppet_ent_agent::nix inherits puppet_ent_agent {
     file { "${staging_dir}/${os}-install.bash":
       ensure  => file,
       owner   => 'root',
-      group   => 'system',
+      group   => $group,
       mode    => '0644',
       content => template("${module_name}/${os}-install.bash.erb"),
     } ->
