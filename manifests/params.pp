@@ -41,7 +41,7 @@ class puppet_ent_agent::params {
   $agent_caserver    = undef
   $agent_fileserver  = undef
   $agent_environment = 'production'
-  $staging_dir       = '/tmp'
+  $staging_dir       = '/tmp/puppet_ent_agent'
   $windows_source    = undef
   $windows_task_min  = '10' # run a scheduled task to upgrade PE agent in x mins
 }

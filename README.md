@@ -72,7 +72,7 @@ The server settings default to undef and do not manage the settings unless overr
 ####`staging_dir`
 
 The directory that will be used on non-Windows hosts to temporarily hold the
-PE Agent installation script.  This defaults to '/tmp'.
+PE Agent installation script.  This defaults to '/tmp/puppet_ent_agent'.
 
 ####`windows_source`
 
