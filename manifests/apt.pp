@@ -32,7 +32,7 @@ class puppet_ent_agent::apt inherits puppet_ent_agent {
     include  => {
       'src' => false,
     },
-    release  => '',     # release name not required
+    release  => '$::lsbdistcodename',
     before    => Package['pe-agent'],
   }
 }
