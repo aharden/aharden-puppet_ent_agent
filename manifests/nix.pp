@@ -4,8 +4,13 @@ class puppet_ent_agent::nix inherits puppet_ent_agent {
   $staging_dir = $::puppet_ent_agent::staging_dir
   $version     = $::puppet_ent_agent::ensure
 
+  $group = 'root'
+
   case $::osfamily {
-    'AIX':     { $os = 'aix' }
+    'AIX':     {
+      $group = 'system'
+      $os = 'aix'
+      }
     'Debian':  {
       case $::platform_tag {
         'ubuntu-14.04-i386','ubuntu-14.04-amd64' : { $os = 'ubuntu-14' }
@@ -30,7 +35,7 @@ class puppet_ent_agent::nix inherits puppet_ent_agent {
     file { $staging_dir:
       ensure => directory,
       owner  => 'root',
-      group  => 'system',
+      group  => $group,
       mode   => '0755',
     }
 
