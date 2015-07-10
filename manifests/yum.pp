@@ -1,20 +1,19 @@
 # manages yumrepo for RH-Linux-based pe_repos
 # note that bug PUP-2271 prevents setting yumrepo proxy "none" with PE <= 3.3
 class puppet_ent_agent::yum inherits puppet_ent_agent {
-  $master         = $::puppet_ent_agent::master
-  $package_ensure = $::puppet_ent_agent::package_ensure
+  $ensure    = $::puppet_ent_agent::ensure
+  $master    = $::puppet_ent_agent::master
+  $repo_name = 'puppetlabs-pepackages'
 
-  $repo_name   = 'puppetlabs-pepackages'
-
-  if $package_ensure == 'latest' {
-    $package_version = 'current'
+  if $ensure == 'latest' {
+    $version = 'current'
   } else {
-    $package_version = $package_ensure
+    $version = $ensure
   }
 
   Yumrepo {
-    baseurl   => "https://${master}:8140/packages/${package_version}/${::platform_tag}",
-    descr     => "Puppet Labs PE Packages version: ${package_version}",
+    baseurl   => "https://${master}:8140/packages/${version}/${::platform_tag}",
+    descr     => "Puppet Labs PE Packages version: ${version}",
     enabled   => true,
     ensure    => present,
     gpgcheck  => true,

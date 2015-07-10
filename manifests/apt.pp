@@ -1,12 +1,13 @@
 # manages apt repo based on debian/ubuntu pe_repos
 class puppet_ent_agent::apt inherits puppet_ent_agent {
-  $master         = $::puppet_ent_agent::master
-  $package_ensure = $::puppet_ent_agent::package_ensure
+  $ensure = $::puppet_ent_agent::ensure
+  $master = $::puppet_ent_agent::master
+  $repo_name = 'puppetlabs-pepackages'
 
-  if $package_ensure == 'latest' {
-    $package_version = 'current'
+  if $ensure == 'latest' {
+    $version = 'current'
   } else {
-    $package_version = $package_ensure
+    $version = $ensure
   }
 
   file { '/etc/apt/puppet-enterprise.gpg.key':
@@ -17,19 +18,19 @@ class puppet_ent_agent::apt inherits puppet_ent_agent {
     source => "puppet:///modules/${module_name}/puppet-enterprise.gpg.key",
   }
 
-  apt_key { 'puppetlabs-pepackages':
+  apt_key { $repo_name:
     ensure => 'present',
     id     => '4BD6EC30',
     source => '/etc/apt/puppet-enterprise.gpg.key',
   }
 
-  apt::conf { 'puppetlabs-pepackages':
+  apt::conf { $repo_name:
     priority => '90',
     content  => template("${module_name}/apt.conf.erb"),
   }
 
-  apt::source { 'puppetlabs-pepackages':
-    location => "https://${master}:8140/packages/${package_version}/${::platform_tag}",
+  apt::source { $repo_name:
+    location => "https://${master}:8140/packages/${version}/${::platform_tag}",
     repos    => './',
     include  => {
       'src' => false,
