@@ -5,10 +5,10 @@ class puppet_ent_agent::yum inherits puppet_ent_agent {
   $master    = $::puppet_ent_agent::master
   $repo_name = 'puppetlabs-pepackages'
 
-  if $ensure == 'latest' {
-    $version = 'current'
-  } else {
-    $version = $ensure
+  case $ensure {
+    'present': { $version = $::pe_version }
+    'latest' : { $version = 'current' }
+    default  : { $version = $ensure }
   }
 
   Yumrepo {
