@@ -37,6 +37,8 @@ class puppet_ent_agent::params {
   }
   $ensure            = 'latest'
   $master            = $::settings::server
+  $repo_name         = 'puppetlabs-pepackages'
+  $repo_version      = undef
   $agent_server      = undef
   $agent_caserver    = undef
   $agent_fileserver  = undef

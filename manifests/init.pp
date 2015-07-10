@@ -17,6 +17,8 @@ class puppet_ent_agent (
   $config            = $puppet_ent_agent::params::config,
   $ensure            = $puppet_ent_agent::params::ensure,
   $master            = $puppet_ent_agent::params::master,
+  $repo_name         = $puppet_ent_agent::params::repo_name,
+  $repo_version      = $puppet_ent_agent::params::repo_version,
   $agent_server      = $puppet_ent_agent::params::agent_server,
   $agent_caserver    = $puppet_ent_agent::params::agent_caserver,
   $agent_fileserver  = $puppet_ent_agent::params::agent_fileserver,
@@ -29,6 +31,8 @@ class puppet_ent_agent (
   validate_absolute_path($config)
   validate_string($ensure)
   validate_string($master)
+  validate_string($repo_name)
+  validate_string($repo_version)
   validate_string($agent_server)
   validate_string($agent_caserver)
   validate_string($agent_fileserver)

@@ -1,14 +1,11 @@
 # manages apt repo based on debian/ubuntu pe_repos
 class puppet_ent_agent::apt inherits puppet_ent_agent {
-  $ensure = $::puppet_ent_agent::ensure
-  $master = $::puppet_ent_agent::master
-  $repo_name = 'puppetlabs-pepackages'
+  $ensure       = $::puppet_ent_agent::ensure
+  $master       = $::puppet_ent_agent::master
+  $repo_name    = $::puppet_ent_agent::repo_name
+  $repo_version = $::puppet_ent_agent::repo_version
 
-  #case $ensure {
-  #  'latest' : { $version = 'current' }
-  #  default  : { $version = $ensure }
-  #}
-  $version = 'current'
+  if $ensure == 'latest' { $repo_version = 'current' }
 
   file { '/etc/apt/puppet-enterprise.gpg.key':
     ensure => 'file',
@@ -30,7 +27,7 @@ class puppet_ent_agent::apt inherits puppet_ent_agent {
   }
 
   apt::source { $repo_name:
-    location => "https://${master}:8140/packages/${version}/${::platform_tag}",
+    location => "https://${master}:8140/packages/${repo_version}/${::platform_tag}",
     repos    => './',
     include  => {
       'src' => false,

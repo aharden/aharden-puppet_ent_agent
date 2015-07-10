@@ -55,12 +55,25 @@ To disable PE agent upgrades, set this to 'present'.
 Version of pe-agent to ensure, by default will use the 'current' package
 repository on the master. *This will auto-upgrade agents if master is updated.*
 
-If you specify a version number, it may cause issues with general vs specific version
-differences (ie 3.2.0 vs 3.2.0.el6.1).  See the Packages list in the pe_repo
+######Advanced Usage:
+If you specify a version number, it must match the package's versioning. E.g.,
+PE agent 3.7.2 package version for Ubuntu is '3.7.2-1ubuntu1'.  The
+`repo_version` parameter must be specified if a package version number is used.
 
 #####For AIX/Solaris/Windows OS families:
 These OS's don't support packages; if managing agent installation on them, set
 `ensure` to the desired version of the PE agent.
+
+####`repo_version`
+
+Only used on Debian/RedHat OS families when a package version number is
+specified in `ensure`.  Selects the pe_repo package repository to use; this
+version must already be present on the pe_repo server.  This module does not
+manage pe_repo.
+
+To use a version of the package repository other than the one linked to
+'current', set this parameter to the corresponding Puppet Enterprise release.  
+E.g., '3.7.2' for PE 3.7.2 agents.
 
 ####`master`
 
