@@ -10,7 +10,7 @@ class puppet_ent_agent::nix inherits puppet_ent_agent {
     'AIX':     {
       $group = 'system'
       $os = 'aix'
-      }
+    }
     'Debian':  {
       case $::platform_tag {
         'ubuntu-14.04-i386','ubuntu-14.04-amd64' : { $os = 'ubuntu-14' }

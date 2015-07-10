@@ -10,7 +10,8 @@ class puppet_ent_agent::install inherits puppet_ent_agent {
       'AIX','Debian','Solaris','Windows': {
         if $ensure != 'latest' {
           case $::osfamily {
-            'AIX','Debian','Solaris': { include ::puppet_ent_agent::nix }
+            'AIX','Solaris': { include ::puppet_ent_agent::nix }
+            'Debian': { include ::puppet_ent_agent::curl }
             #'Solaris': { include ::puppet_ent_agent::solaris }
             'windows': {
               if $windows_source {
