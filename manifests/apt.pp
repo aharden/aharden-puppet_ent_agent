@@ -4,10 +4,11 @@ class puppet_ent_agent::apt inherits puppet_ent_agent {
   $master = $::puppet_ent_agent::master
   $repo_name = 'puppetlabs-pepackages'
 
-  case $ensure {
-    'latest' : { $version = 'current' }
-    default  : { $version = $ensure }
-  }
+  #case $ensure {
+  #  'latest' : { $version = 'current' }
+  #  default  : { $version = $ensure }
+  #}
+  $version = 'current'
 
   file { '/etc/apt/puppet-enterprise.gpg.key':
     ensure => 'file',
