@@ -45,8 +45,8 @@ The following parameters are available in the puppet_ent_agent module:
 ####`config`
 
 Path to the puppet.conf file.  Defaults:
-* Unix/Linux: '/etc/puppetlabs/puppet/puppet.conf'
-* Windows: '${appdata}/PuppetLabs/puppet/etc/puppet.conf'
+* Unix/Linux: `/etc/puppetlabs/puppet/puppet.conf`
+* Windows: `${appdata}/PuppetLabs/puppet/etc/puppet.conf`
 
 ####`ensure`
 
