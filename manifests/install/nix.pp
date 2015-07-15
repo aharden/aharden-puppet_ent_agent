@@ -1,5 +1,5 @@
 # Download bash script from pe_repo and run it
-class puppet_ent_agent::install::nix inherits puppet_ent_agent {
+class puppet_ent_agent::install::nix {
   $master      = $::puppet_ent_agent::master
   $staging_dir = $::puppet_ent_agent::staging_dir
   $version     = $::puppet_ent_agent::ensure
