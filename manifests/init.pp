@@ -15,7 +15,7 @@
 #
 class puppet_ent_agent (
   $config            = $puppet_ent_agent::params::config,
-  $package_ensure    = $puppet_ent_agent::params::package_ensure,
+  $ensure            = $puppet_ent_agent::params::ensure,
   $master            = $puppet_ent_agent::params::master,
   $agent_server      = $puppet_ent_agent::params::agent_server,
   $agent_caserver    = $puppet_ent_agent::params::agent_caserver,
@@ -24,11 +24,10 @@ class puppet_ent_agent (
   $staging_dir       = $puppet_ent_agent::params::staging_dir,
   $windows_source    = $puppet_ent_agent::params::windows_source,
   $windows_task_min  = $puppet_ent_agent::params::windows_task_min,
-  $version           = $puppet_ent_agent::params::version,
 ) inherits puppet_ent_agent::params {
 
   validate_absolute_path($config)
-  validate_string($package_ensure)
+  validate_string($ensure)
   validate_string($master)
   validate_string($agent_server)
   validate_string($agent_caserver)
@@ -37,7 +36,6 @@ class puppet_ent_agent (
   validate_string($staging_dir)
   validate_string($windows_source)
   validate_integer($windows_task_min)
-  validate_string($version)
 
   class { '::puppet_ent_agent::install': } ->
   class { '::puppet_ent_agent::config': } ->

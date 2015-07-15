@@ -1,5 +1,5 @@
 # manages puppet.conf
-class puppet_ent_agent::config inherits puppet_ent_agent {
+class puppet_ent_agent::config {
   $config            = $::puppet_ent_agent::config
   $agent_server      = $::puppet_ent_agent::agent_server
   $agent_caserver    = $::puppet_ent_agent::agent_caserver

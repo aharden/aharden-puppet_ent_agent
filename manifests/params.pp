@@ -1,16 +1,16 @@
-# Class: pe_agent::params
+# Class: puppet_ent_agent::params
 #
 # This class manages PE agent parameters
 #
 # Parameters:
 # - $config: path to configuration file
-# - $package_ensure: desired ensure for pe-agent package
+# - $ensure: desired ensure/version for pe-agent package
 # - $master: PE master with agent files for upgrades (pe_repo server)
 # - $agent_server: PE compile master
 # - $agent_caserver: PE certificate authority (CA) server
 # - $agent_fileserver: PE filebucket server
 # - $agent_environment: desired default environment
-# - $staging_dir: temp directory to use on AIX/Solaris
+# - $staging_dir: temp directory to use on non-Windows servers
 # - $windows_source: UNC path to file share hosting Windows PE MSI installers
 # _ $windows_task_min: (int) will schedule a task to run upgrade in x mins
 # - $version: must pass version number for PE windows package provider and AIX
@@ -35,14 +35,13 @@ class puppet_ent_agent::params {
   else {
     $config = '/etc/puppetlabs/puppet/puppet.conf'
   }
-  $package_ensure = 'latest'
-  $master = $::settings::server
-  $agent_server = undef
-  $agent_caserver = undef
-  $agent_fileserver = undef
+  $ensure            = 'latest'
+  $master            = $::settings::server
+  $agent_server      = undef
+  $agent_caserver    = undef
+  $agent_fileserver  = undef
   $agent_environment = 'production'
-  $staging_dir = '/tmp/puppet-enterprise-installer'
-  $windows_source = undef
-  $windows_task_min = '10' # run a scheduled task to upgrade the agent in 10 mins
-  $version = $::pe_version
+  $staging_dir       = '/tmp/puppet_ent_agent'
+  $windows_source    = undef
+  $windows_task_min  = '10' # run a scheduled task to upgrade PE agent in x mins
 }
