@@ -14,7 +14,7 @@ The puppet\_ent\_agent module installs, configures and manages the Puppet Enterp
 
 ##Module Description
 
-The puppet\_ent\_agent module is dependent on the PE Package Repositories (pe_repo classes) available on any Puppet Enterprise Master version 3.2 or greater. This module was designed so that PE users can easily upgrade their managed PE agents after a version upgrade of a deployment's PE server(s).
+The puppet\_ent\_agent module is dependent on the PE Package Repositories (pe_repo classes) available on any Puppet Enterprise Master version 3.2 or greater (excluding PE 2015.x). This module was designed so that PE users can easily upgrade their managed PE agents after a version upgrade of a deployment's PE server(s).
 
 Because pe_repo doesn't include the Windows agents, they can be supported by hosting the Windows PE agent installers on SMB shares.
 
@@ -34,7 +34,7 @@ Because pe_repo doesn't include the Windows agents, they can be supported by hos
 ```puppet
 class { '::puppet_ent_agent':
   agent_caserver => 'puppetca.company.lan',
-  ensure         => '3.8.1'
+  ensure         => '3.8.2'
   windows_source => '\\myfileserver\pe-agent'
 }
 ```
