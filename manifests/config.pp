@@ -16,7 +16,7 @@ class puppet_ent_agent::config {
 
   case $::osfamily {
     'AIX': {
-      include puppet_ent_agent::config::symlinks
+      include ::puppet_ent_agent::config::symlinks
 
       file { $config:
         ensure => file,
@@ -31,8 +31,8 @@ class puppet_ent_agent::config {
       }
     }
     default: {
-      include puppet_ent_agent::config::symlinks
-      
+      include ::puppet_ent_agent::config::symlinks
+
       file { $config:
         ensure => file,
         owner  => 'pe-puppet',
