@@ -6,10 +6,6 @@ class puppet_ent_agent::config {
   $agent_environment = $::puppet_ent_agent::agent_environment
   $agent_fileserver  = $::puppet_ent_agent::agent_fileserver
 
-  File {
-    ensure => link,
-  }
-
   Ini_setting {
     ensure  => present,
     path    => $config,
@@ -20,6 +16,8 @@ class puppet_ent_agent::config {
 
   case $::osfamily {
     'AIX': {
+      include puppet_ent_agent::config::symlinks
+
       file { $config:
         ensure => file,
         owner  => 'puppet',
@@ -33,6 +31,8 @@ class puppet_ent_agent::config {
       }
     }
     default: {
+      include puppet_ent_agent::config::symlinks
+      
       file { $config:
         ensure => file,
         owner  => 'pe-puppet',
@@ -40,22 +40,6 @@ class puppet_ent_agent::config {
         mode   => '0600',
       }
     }
-  }
-
-  file { '/usr/bin/facter':
-    target => '/opt/puppet/bin/facter',
-  }
-
-  file { '/usr/bin/hiera':
-    target => '/opt/puppet/bin/hiera',
-  }
-
-  file { '/usr/bin/puppet':
-    target => '/opt/puppet/bin/puppet',
-  }
-
-  file { '/usr/bin/pe-man':
-    target => '/opt/puppet/bin/pe-man',
   }
 
   if $agent_server {

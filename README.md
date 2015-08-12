@@ -25,6 +25,7 @@ Because pe_repo doesn't include the Windows agents, they can be supported by hos
 * pe-agent package (and pe-\* packages related to PE)
 * puppet.conf configuration file.
 * pe-puppet service.
+* /usr/bin links for facter, hiera, puppet, pe-man binaries (Unix/Linux)
 
 ###Beginning with puppet\_ent\_agent
 
