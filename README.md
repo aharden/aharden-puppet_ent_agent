@@ -63,11 +63,19 @@ If the pe_repo package repository of the specified version is not present on the
 
 Hostname of a PE master with the required pe_repo classes properly applied to it.  Defaults to the PE master that compiled the agent's catalog.
 
-####`agent_server` & `agent_caserver` & `agent_fileserver` & `agent_environment`
+####`agent_server` & `agent_caserver` & `agent_fileserver` & `agent_environment` & `agent_splay`
 
 Sets the server, ca_server, archive_file_server and environment settings in the agent's puppet.conf file.
 
 The server settings default to undef and do not manage the settings unless overridden in node classification.  *agent_environment* defaults to 'production'.
+
+####`agent_remove_modulepath` 
+
+If set to true the module will ensure the depracated modulepath setting is removed from puppet.conf default is false
+
+####`manage_symlinks` 
+
+If set to true the module will create symlinks to hiera, puppet, facter, etc in /usr/bin default is true
 
 ####`staging_dir`
 

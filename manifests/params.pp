@@ -10,6 +10,9 @@
 # - $agent_caserver: PE certificate authority (CA) server
 # - $agent_fileserver: PE filebucket server
 # - $agent_environment: desired default environment
+# - $agent_splay: enable splay on the agent
+# - $agent_remove_modulepath: remove the deprecated modulepath setting from puppet.conf
+# - $manage_symlinks: create symlinks in /usr/bin
 # - $staging_dir: temp directory to use on non-Windows servers
 # - $windows_source: UNC path to file share hosting Windows PE MSI installers
 # _ $windows_task_min: (int) will schedule a task to run upgrade in x mins
@@ -35,13 +38,16 @@ class puppet_ent_agent::params {
   else {
     $config = '/etc/puppetlabs/puppet/puppet.conf'
   }
-  $ensure            = 'latest'
-  $master            = $::settings::server
-  $agent_server      = undef
-  $agent_caserver    = undef
-  $agent_fileserver  = undef
-  $agent_environment = 'production'
-  $staging_dir       = '/tmp/puppet_ent_agent'
-  $windows_source    = undef
-  $windows_task_min  = '10' # run a scheduled task to upgrade PE agent in x mins
+  $ensure                  = 'latest'
+  $master                  = $::settings::server
+  $agent_server            = undef
+  $agent_caserver          = undef
+  $agent_fileserver        = undef
+  $agent_environment       = 'production'
+  $agent_splay             = undef
+  $agent_remove_modulepath = false
+  $staging_dir             = '/tmp/puppet_ent_agent'
+  $windows_source          = undef
+  $windows_task_min        = '10' # run a scheduled task to upgrade PE agent in x mins
+  $manage_symlinks         = true
 }
