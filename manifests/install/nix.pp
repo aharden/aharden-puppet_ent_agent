@@ -11,7 +11,7 @@ class puppet_ent_agent::install::nix {
     default: { $group = 'root' }
   }
 
-  if $::pe_version != $version {
+  if (versioncmp($version,$::pe_version) > 0) {
 
     file { $staging_dir:
       ensure => directory,
