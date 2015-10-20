@@ -38,7 +38,7 @@ class puppet_ent_agent::params {
   else {
     $config = '/etc/puppetlabs/puppet/puppet.conf'
   }
-  $ensure                  = 'latest'
+  $ensure                  = 'present'
   $master                  = $::settings::server
   $agent_server            = undef
   $agent_caserver          = undef

@@ -16,7 +16,7 @@ The puppet\_ent\_agent module installs, configures and manages the Puppet Enterp
 
 The puppet\_ent\_agent module is dependent on the PE Package Repositories (pe_repo classes) available on any Puppet Enterprise Master version 3.2 or greater (excluding PE 2015.x). This module was designed so that PE users can easily upgrade their managed PE agents after a version upgrade of a deployment's PE server(s).
 
-Because pe_repo doesn't include the Windows agents, they can be supported by hosting the Windows PE agent installers on SMB shares.
+Because pe_repo on PE 3.x doesn't include the Windows agents, they can be supported by hosting the Windows PE agent installers on SMB shares.
 
 ##Setup
 
@@ -65,17 +65,17 @@ Hostname of a PE master with the required pe_repo classes properly applied to it
 
 ####`agent_server` & `agent_caserver` & `agent_fileserver` & `agent_environment` & `agent_splay`
 
-Sets the server, ca_server, archive_file_server and environment settings in the agent's puppet.conf file.
+Sets the server, ca_server, archive_file_server, environment, and splay settings in the agent's puppet.conf file.
 
 The server settings default to undef and do not manage the settings unless overridden in node classification.  *agent_environment* defaults to 'production'.
 
-####`agent_remove_modulepath` 
+####`agent_remove_modulepath`
 
-If set to true the module will ensure the depracated modulepath setting is removed from puppet.conf default is false
+If set to true the module will ensure the deprecated modulepath setting is removed from puppet.conf.  Default is 'false'.
 
-####`manage_symlinks` 
+####`manage_symlinks`
 
-If set to true the module will create symlinks to hiera, puppet, facter, etc in /usr/bin default is true
+If set to 'true' the module will create symlinks to hiera, puppet, facter, etc in /usr/bin.  Default is 'true'.
 
 ####`staging_dir`
 
@@ -91,7 +91,7 @@ The author recommends the use of Distributed File Services (DFS) namespaces with
 
 ####`windows_task_min`
 
-The number of minutes to delay a scheduled task that will be configured to run an upgrade of the PE agent on a managed Windows system, if required.  Defaults to 10 minutes.  This is meant to allow an upgrade of the PE agent while it's not running a catalog.
+The number of minutes to delay a scheduled task that will be configured to run an upgrade of the PE agent on a managed Windows system, if required.  Defaults to 10 minutes.  This is meant to allow an upgrade of the PE agent while it's not applying a catalog.
 
 
 ##Limitations
