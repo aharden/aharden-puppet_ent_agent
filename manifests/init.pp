@@ -36,11 +36,13 @@ class puppet_ent_agent (
   validate_string($agent_caserver)
   validate_string($agent_fileserver)
   validate_string($agent_environment)
-  validate_string($agent_splay)
   validate_string($staging_dir)
   validate_string($windows_source)
   validate_bool($agent_remove_modulepath)
   validate_bool($manage_symlinks)
+  if ($agent_splay != undef) {
+    validate_bool($agent_splay)
+  }
   validate_integer($windows_task_min)
 
   class { '::puppet_ent_agent::install': } ->
