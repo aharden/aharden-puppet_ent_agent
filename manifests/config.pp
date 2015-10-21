@@ -85,17 +85,16 @@ class puppet_ent_agent::config {
     }
   }
   else {
-    #
-    # The quotes around $agent_splay matter
-    # as they convert the bool to a string
-    # for proper handling by inifile module
-    #
-    # lint:ignore:only_variable_string
+    if $agent_splay {
+      $my_splay = 'true'
+    } else {
+      $my_splay = 'false'
+    }
+
     ini_setting { 'agent_splay':
       setting => 'splay',
-      value   => "${agent_splay}",
+      value   => $my_splay,
     }
-    # lint:endignore
   }
 
   if $agent_remove_modulepath {

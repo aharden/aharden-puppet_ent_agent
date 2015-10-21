@@ -1,3 +1,8 @@
+## 2015-10-21 - Version 1.2.1
+
+Bugfix:
+* config.pp: spelling error fixed and corrected linting issue
+
 ## 2015-10-21 - Version 1.2.0
 
 New features:
