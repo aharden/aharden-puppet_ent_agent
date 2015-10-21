@@ -7,7 +7,7 @@ class puppet_ent_agent::config {
   $agent_fileserver        = $::puppet_ent_agent::agent_fileserver
   $agent_splay             = $::puppet_ent_agent::agent_splay
   $agent_remove_modulepath = $::puppet_ent_agent::agent_remove_modulepath
-  $manage_symlinks         = $::puppet_ent_agnet::manage_symlinks
+  $manage_symlinks         = $::puppet_ent_agent::manage_symlinks
 
   Ini_setting {
     ensure  => present,
