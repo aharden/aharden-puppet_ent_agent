@@ -24,6 +24,7 @@ class puppet_ent_agent::install::nix {
       source             => "https://${master}:8140/packages/${version}/${::platform_tag}.bash",
       destination        => "${staging_dir}/install.bash",
       timeout            => 0,
+      redownload         => true,
       verbose            => false,
       nocheckcertificate => true,
     } ->
