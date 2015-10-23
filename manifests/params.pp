@@ -31,13 +31,7 @@
 # Sample Usage:
 #
 class puppet_ent_agent::params {
-  if $::osfamily == 'windows' {
-    $appdata = regsubst($::common_appdata,'\\','/','G')
-    $config = "${appdata}/PuppetLabs/puppet/etc/puppet.conf"
-  }
-  else {
-    $config = '/etc/puppetlabs/puppet/puppet.conf'
-  }
+  $config                  = "${::puppet_confdir}/puppet.conf"
   $ensure                  = 'present'
   $master                  = $::settings::server
   $agent_server            = undef
