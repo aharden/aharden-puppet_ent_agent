@@ -1,3 +1,12 @@
+## 2015-10-23 - Version 1.2.2
+
+Bugfix:
+* config.pp: uncorrected linting issue to improve code quality score
+* install/nix.pp: added redownload parameter in case previous install.bash was still on disk
+* params.pp: moved to a puppet_confdir fact for Puppet 3.x/4.x compatibility (thanks to puppetlabs-puppet_agent module for idea)
+
+Thanks to @ajmaidak for the install/nix contribution.
+
 ## 2015-10-21 - Version 1.2.1
 
 Bugfix:
