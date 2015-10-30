@@ -1,3 +1,8 @@
+## 2015-10-30 - Version 1.2.3
+
+Bugfix:
+* added support in config and service classes for Puppet AIO (all-in-one) agent to accommodate transitions to PE 2015.2.x
+
 ## 2015-10-23 - Version 1.2.2
 
 Bugfix:
