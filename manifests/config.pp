@@ -8,13 +8,14 @@ class puppet_ent_agent::config {
   $agent_splay             = $::puppet_ent_agent::agent_splay
   $agent_remove_modulepath = $::puppet_ent_agent::agent_remove_modulepath
   $manage_symlinks         = $::puppet_ent_agent::manage_symlinks
+  $service_name            = $::puppet_ent_agent::service_name
 
   Ini_setting {
     ensure  => present,
     path    => $config,
     section => 'main',
     require => File[$config],
-    notify  => Service['pe-puppet'],
+    notify  => Service[$service_name],
   }
 
   case $::osfamily {

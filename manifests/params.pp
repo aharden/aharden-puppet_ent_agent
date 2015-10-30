@@ -44,4 +44,13 @@ class puppet_ent_agent::params {
   $windows_source          = undef
   $windows_task_min        = '10' # run a scheduled task to upgrade PE agent in x mins
   $manage_symlinks         = true
+
+  # determine PE version based on ruby version
+  if versioncmp($::rubyversion,'1.9.3') > 0 {
+    $bin_path     = '/opt/puppetlabs/bin'
+    $service_name = 'puppet' # PE 2015.2 uses all-in-one agent
+  } else {
+    $bin_path     = '/opt/puppet/bin'
+    $service_name = 'pe-puppet'
+  }
 }

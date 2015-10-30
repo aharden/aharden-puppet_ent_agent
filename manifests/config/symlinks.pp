@@ -1,22 +1,24 @@
 # manages symlinks to PE agent binaries
 class puppet_ent_agent::config::symlinks {
+  $bin_path                = $::puppet_ent_agent::bin_path
+
   File {
     ensure => link,
   }
 
   file { '/usr/bin/facter':
-    target => '/opt/puppet/bin/facter',
+    target => "${bin_path}/facter",
   }
 
   file { '/usr/bin/hiera':
-    target => '/opt/puppet/bin/hiera',
+    target => "${bin_path}/hiera",
   }
 
   file { '/usr/bin/puppet':
-    target => '/opt/puppet/bin/puppet',
+    target => "${bin_path}/puppet",
   }
 
   file { '/usr/bin/pe-man':
-    target => '/opt/puppet/bin/pe-man',
+    target => "${bin_path}/pe-man",
   }
 }
