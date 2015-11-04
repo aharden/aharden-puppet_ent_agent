@@ -1,3 +1,8 @@
+## 2015-11-03 - Version 1.2.4
+
+Bugfix:
+* params.pp: rubyversion fact was not the best indicator of Puppet agent type (PE 3.x vs AIO) and hence service name.  I believe the "is_pe" fact is; moved over to using that.
+
 ## 2015-10-30 - Version 1.2.3
 
 Bugfix:
