@@ -8,8 +8,17 @@ class puppet_ent_agent::install::nix {
 
   case $::osfamily {
     'AIX':   { $group = 'system' }
+    'Redhat': { 
+      if ($::operatingsystemmajrelease == 5) {
+        $wgetflags = ['--secure-protocol=TLSv1']
+      }
+      else {
+        $wgetflags = ''
+      }
+    }
     default: { $group = 'root' }
   }
+
 
   if (versioncmp($version,$::pe_version) > 0) {
 
@@ -26,6 +35,7 @@ class puppet_ent_agent::install::nix {
       timeout            => 0,
       redownload         => true,
       verbose            => false,
+      flags		 => $wgetflags,
       nocheckcertificate => true,
     } ->
     exec { "/bin/bash -e ${staging_dir}/install.bash":
