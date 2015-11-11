@@ -1,3 +1,10 @@
+## 2015-11-11 - Version 1.2.6
+
+Bugfix:
+* install/nix.pp: Force RedHat 5.x systems to specify TLSv1 security for wget.  We may have other platforms that require this since PE requires TLSv1 security or better.
+
+Thanks to @ajmaidak for this contribution.
+
 ## 2015-11-03 - Version 1.2.5
 
 Bugfix:
