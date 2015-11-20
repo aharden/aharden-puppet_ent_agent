@@ -51,7 +51,7 @@ Path to the puppet.conf file.  Defaults:
 
 ####`curl_path`
 
-Path to the curl binary (Unix/Linux only).  Defaults to `/usr/bin/curl`
+Path to the curl binary (AIX only).  Defaults to `/usr/bin/curl`
 
 ####`ensure`
 
