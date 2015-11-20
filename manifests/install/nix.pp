@@ -1,12 +1,12 @@
 # Download bash script from pe_repo and run it
 class puppet_ent_agent::install::nix {
   $curl_path    = $::puppet_ent_agent::curl_path
-  $install_cmd  = "/bin/bash -e ${install_file}"
-  $install_file = "${staging_dir}/install.bash"
   $master       = $::puppet_ent_agent::master
-  $source       = "https://${master}:8140/packages/${version}/${::platform_tag}.bash"
   $staging_dir  = $::puppet_ent_agent::staging_dir
   $version      = $::puppet_ent_agent::ensure
+  $install_file = "${staging_dir}/install.bash"
+  $install_cmd  = "/bin/bash -e ${install_file}"
+  $source       = "https://${master}:8140/packages/${version}/${::platform_tag}.bash"
 
   include wget
 
