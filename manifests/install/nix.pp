@@ -1,5 +1,6 @@
 # Download bash script from pe_repo and run it
 class puppet_ent_agent::install::nix {
+  $curl_path    = $::puppet_ent_agent::curl_path
   $install_cmd  = "/bin/bash -e ${install_file}"
   $install_file = "${staging_dir}/install.bash"
   $master       = $::puppet_ent_agent::master
@@ -30,7 +31,7 @@ class puppet_ent_agent::install::nix {
     }
 
     if $use_curl {
-      exec { "curl -1 -sLo \"${install_file}\" \"${source}\"":
+      exec { "${curl_path} -1 -sLo \"${install_file}\" \"${source}\"":
         user   => 'root',
         before => Exec[$install_cmd],
       }

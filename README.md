@@ -49,6 +49,10 @@ Path to the puppet.conf file.  Defaults:
 * Unix/Linux: `/etc/puppetlabs/puppet/puppet.conf`
 * Windows: `${appdata}/PuppetLabs/puppet/etc/puppet.conf`
 
+####`curl_path`
+
+Path to the curl binary (Unix/Linux only).  Defaults to `/usr/bin/curl`
+
 ####`ensure`
 
 Default setting: 'present'

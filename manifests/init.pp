@@ -15,6 +15,7 @@
 #
 class puppet_ent_agent (
   $config                  = $puppet_ent_agent::params::config,
+  $curl_path               = $puppet_ent_agent::params::curl_path,
   $ensure                  = $puppet_ent_agent::params::ensure,
   $master                  = $puppet_ent_agent::params::master,
   $agent_server            = $puppet_ent_agent::params::agent_server,
@@ -30,6 +31,7 @@ class puppet_ent_agent (
 ) inherits puppet_ent_agent::params {
 
   validate_absolute_path($config)
+  validate_absolute_path($curl_path)
   validate_string($ensure)
   validate_string($master)
   validate_string($agent_server)
