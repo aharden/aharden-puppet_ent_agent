@@ -10,15 +10,6 @@ class puppet_ent_agent::install::nix {
     'AIX':   {
       $group = 'system'
     }
-    'Redhat': {
-      $group = 'root'
-      if ($::operatingsystemmajrelease == 5) {
-        $wgetflags = ['--secure-protocol=TLSv1']
-      }
-      else {
-        $wgetflags = ''
-      }
-    }
     default: {
       $group = 'root'
     }
@@ -39,7 +30,7 @@ class puppet_ent_agent::install::nix {
       timeout            => 0,
       redownload         => true,
       verbose            => false,
-      flags              => $wgetflags,
+      flags              => ['--secure-protocol=TLSv1'],
       nocheckcertificate => true,
     } ->
     exec { "/bin/bash -e ${staging_dir}/install.bash":
