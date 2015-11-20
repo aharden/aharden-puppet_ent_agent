@@ -1,3 +1,11 @@
+## 2015-11-20 - Version 1.3.0
+
+New Feature:
+* curl_path parameter for AIX (doesn't support wget with SSL)
+
+Bugfix:
+* Moved all wget::fetch calls to use TLSv1 since that's what Puppet Enterprise defaults to
+
 ## 2015-11-11 - Version 1.2.6
 
 Bugfix:

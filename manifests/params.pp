@@ -32,6 +32,7 @@
 #
 class puppet_ent_agent::params {
   $config                  = "${::puppet_confdir}/puppet.conf"
+  $curl_path               = '/usr/bin/curl'
   $ensure                  = 'present'
   $master                  = $::settings::server
   $agent_server            = undef

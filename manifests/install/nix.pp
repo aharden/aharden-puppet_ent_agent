@@ -1,26 +1,23 @@
 # Download bash script from pe_repo and run it
 class puppet_ent_agent::install::nix {
-  $master      = $::puppet_ent_agent::master
-  $staging_dir = $::puppet_ent_agent::staging_dir
-  $version     = $::puppet_ent_agent::ensure
+  $curl_path    = $::puppet_ent_agent::curl_path
+  $master       = $::puppet_ent_agent::master
+  $staging_dir  = $::puppet_ent_agent::staging_dir
+  $version      = $::puppet_ent_agent::ensure
+  $install_file = "${staging_dir}/install.bash"
+  $install_cmd  = "/bin/bash -e ${install_file}"
+  $source       = "https://${master}:8140/packages/${version}/${::platform_tag}.bash"
 
   include wget
 
   case $::osfamily {
     'AIX':   {
-      $group = 'system'
-    }
-    'Redhat': {
-      $group = 'root'
-      if ($::operatingsystemmajrelease == 5) {
-        $wgetflags = ['--secure-protocol=TLSv1']
-      }
-      else {
-        $wgetflags = ''
-      }
+      $group    = 'system'
+      $use_curl = true
     }
     default: {
-      $group = 'root'
+      $group    = 'root'
+      $use_curl = false
     }
   }
 
@@ -33,16 +30,25 @@ class puppet_ent_agent::install::nix {
       mode   => '0755',
     }
 
-    wget::fetch { 'download PE agent install.bash':
-      source             => "https://${master}:8140/packages/${version}/${::platform_tag}.bash",
-      destination        => "${staging_dir}/install.bash",
-      timeout            => 0,
-      redownload         => true,
-      verbose            => false,
-      flags              => $wgetflags,
-      nocheckcertificate => true,
-    } ->
-    exec { "/bin/bash -e ${staging_dir}/install.bash":
+    if $use_curl {
+      exec { "${curl_path} -1 -sLo \"${install_file}\" \"${source}\"":
+        user   => 'root',
+        before => Exec[$install_cmd],
+      }
+    } else {
+      wget::fetch { 'download PE agent install.bash':
+        source             => $source,
+        destination        => $install_file,
+        timeout            => 0,
+        redownload         => true,
+        verbose            => false,
+        flags              => ['--secure-protocol=TLSv1'],
+        nocheckcertificate => true,
+        before             => Exec[$install_cmd],
+      }
+    }
+
+    exec { $install_cmd:
       user => 'root',
     }
   }
