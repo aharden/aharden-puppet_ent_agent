@@ -1,17 +1,22 @@
 # Download bash script from pe_repo and run it
 class puppet_ent_agent::install::nix {
-  $master      = $::puppet_ent_agent::master
-  $staging_dir = $::puppet_ent_agent::staging_dir
-  $version     = $::puppet_ent_agent::ensure
+  $install_cmd  = "/bin/bash -e ${install_file}"
+  $install_file = "${staging_dir}/install.bash"
+  $master       = $::puppet_ent_agent::master
+  $source       = "https://${master}:8140/packages/${version}/${::platform_tag}.bash"
+  $staging_dir  = $::puppet_ent_agent::staging_dir
+  $version      = $::puppet_ent_agent::ensure
 
   include wget
 
   case $::osfamily {
     'AIX':   {
-      $group = 'system'
+      $group    = 'system'
+      $use_curl = true
     }
     default: {
-      $group = 'root'
+      $group    = 'root'
+      $use_curl = false
     }
   }
 
@@ -24,16 +29,25 @@ class puppet_ent_agent::install::nix {
       mode   => '0755',
     }
 
-    wget::fetch { 'download PE agent install.bash':
-      source             => "https://${master}:8140/packages/${version}/${::platform_tag}.bash",
-      destination        => "${staging_dir}/install.bash",
-      timeout            => 0,
-      redownload         => true,
-      verbose            => false,
-      flags              => ['--secure-protocol=TLSv1'],
-      nocheckcertificate => true,
-    } ->
-    exec { "/bin/bash -e ${staging_dir}/install.bash":
+    if $use_curl {
+      exec { "curl -1 -sLo \"${install_file}\" \"${source}\"":
+        user   => 'root',
+        before => Exec[$install_cmd],
+      }
+    } else {
+      wget::fetch { 'download PE agent install.bash':
+        source             => $source,
+        destination        => $install_file,
+        timeout            => 0,
+        redownload         => true,
+        verbose            => false,
+        flags              => ['--secure-protocol=TLSv1'],
+        nocheckcertificate => true,
+        before             => Exec[$install_cmd],
+      }
+    }
+
+    exec { $install_cmd:
       user => 'root',
     }
   }
