@@ -52,8 +52,10 @@ class puppet_ent_agent::params {
   if $::is_pe { # PE 3.x agent
     $bin_path     = '/opt/puppet/bin'
     $service_name = 'pe-puppet'
+    $skip_install = false
   } else {      # All-in-one agent
     $bin_path     = '/opt/puppetlabs/bin'
     $service_name = 'puppet'
+    $skip_install = true
   }
 }
