@@ -2,6 +2,8 @@
 class puppet_ent_agent::config::symlinks {
   $bin_path                = $::puppet_ent_agent::bin_path
 
+  assert_private()
+
   File {
     ensure => link,
   }
