@@ -1,4 +1,4 @@
-## 2016-02-xx - Version 1.4.0
+## 2016-02-01 - Version 1.4.0
 
 New Features:
 * Compatible with PE 2015.2.x and PE 2015.3.x deployments (PE 2015.x and later All-in-one agent upgrades not supported)

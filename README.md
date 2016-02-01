@@ -106,4 +106,4 @@ Windows support requires the MSI installers for the PE Agent for Windows to be h
 
 AIX, Debian/Ubuntu, and Windows OS Families have been tested.  RedHat and Solaris testing is in progress, but should work.  Windows support was changed to a scheduled task after it was found that managing the PE agent as a Puppet package resource produced unpredictable behavior and is not supported by Puppet Labs.
 
-To upgrade PE agents on PE 2015.x and above deployments, please use the puppetlabs-puppet_agent module.
+To upgrade PE agents on PE 2015.x and above deployments, please use the puppetlabs-puppet_agent module.  Note that puppet_ent_agent and puppet_agent both manage puppet.conf, so only one of them can be classified at a time.  On PE 2015.x deployments I recommend using puppet_ent_agent to proactively manage puppet.conf, and using puppet_agent as a tool to effect mass agent upgrades.
