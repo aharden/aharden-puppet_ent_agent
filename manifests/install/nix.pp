@@ -10,6 +10,8 @@ class puppet_ent_agent::install::nix {
 
   include wget
 
+  assert_private()  
+
   case $::osfamily {
     'AIX':   {
       $group    = 'system'

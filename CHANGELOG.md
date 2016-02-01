@@ -1,3 +1,9 @@
+## 2016-02-01 - Version 1.4.0
+
+New Features:
+* Compatible with PE 2015.2.x and PE 2015.3.x deployments (PE 2015.x and later All-in-one agent upgrades not supported)
+* All non-base classes now marked private
+
 ## 2015-11-20 - Version 1.3.0
 
 New Feature:

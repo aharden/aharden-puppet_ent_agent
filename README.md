@@ -10,11 +10,11 @@
 
 ##Overview
 
-The puppet\_ent\_agent module installs, configures and manages the Puppet Enterprise Agent software and the pe-puppet service.
+The puppet\_ent\_agent module configures and manages the Puppet Enterprise Agent software and service.  It can also upgrade the agent software on PE 3.x deployments.
 
 ##Module Description
 
-The puppet\_ent\_agent module is dependent on the PE Package Repositories (pe_repo classes) available on any Puppet Enterprise Master version 3.2 or greater (excluding PE 2015.x). This module was designed so that PE users can easily upgrade their managed PE agents after a version upgrade of a deployment's PE server(s).
+The puppet\_ent\_agent module's upgrade capability is dependent on the PE Package Repositories (pe_repo classes) available on any Puppet Enterprise Master version 3.2 or greater. This module was designed so that PE users can easily upgrade their managed PE agents after a version upgrade of a deployment's PE server(s). The upgrade capability is limited to PE 3.x deployments; to upgrade PE agents on PE 2015.x and later deployments, please use the puppetlabs-puppet_agent module.
 
 Because pe_repo on PE 3.x doesn't include the Windows agents, they can be supported by hosting the Windows PE agent installers on SMB shares.
 
@@ -22,10 +22,10 @@ Because pe_repo on PE 3.x doesn't include the Windows agents, they can be suppor
 
 ###What puppet\_ent\_agent affects
 
-* pe-agent package (and pe-\* packages related to PE)
 * puppet.conf configuration file.
-* pe-puppet service.
+* PE agent service (PE 3.x: pe-puppet; PE 2015.x and later: puppet)
 * /usr/bin links for facter, hiera, puppet, pe-man binaries (Unix/Linux)
+* pe-agent package (and pe-\* packages related to PE; PE 3.x only)
 
 ###Beginning with puppet\_ent\_agent
 
@@ -34,7 +34,7 @@ Because pe_repo on PE 3.x doesn't include the Windows agents, they can be suppor
 ```puppet
 class { '::puppet_ent_agent':
   agent_caserver => 'puppetca.company.lan',
-  ensure         => '3.8.2'
+  ensure         => '3.8.3'
   windows_source => '\\myfileserver\pe-agent'
 }
 ```
@@ -57,9 +57,9 @@ Path to the curl binary (AIX only).  Defaults to `/usr/bin/curl`
 
 Default setting: 'present'
 
-To disable PE agent upgrades, leave this set to 'present'.
+To disable PE agent upgrades, leave this set to 'present'.  On PE 2015.x and later agents, it will be ignored.
 
-To upgrade managed agents to a specific PE version, specify a PE agent version available on your pe_repo PE masters and/or Windows PE agent source.
+To upgrade managed agents to a specific PE 3.x version, specify a PE agent version available on your pe_repo PE masters and/or Windows PE agent source.
 
 If the pe_repo package repository of the specified version is not present on the pe_repo server, the module will fail.  This module does not manage pe_repo.
 
@@ -79,7 +79,7 @@ If set to true the module will ensure the deprecated modulepath setting is remov
 
 ####`manage_symlinks`
 
-If set to 'true' the module will create symlinks to hiera, puppet, facter, etc in /usr/bin.  Default is 'true'.
+If set to 'true' the module will create symlinks to hiera, puppet, facter, etc in /usr/bin. (Unix/Linux only) Default is 'true'.
 
 ####`staging_dir`
 
@@ -105,3 +105,5 @@ This module depends completely on the correct pe_repo classes being added to the
 Windows support requires the MSI installers for the PE Agent for Windows to be hosted outside of the PE environment.  PowerShell is required for upgrade support.
 
 AIX, Debian/Ubuntu, and Windows OS Families have been tested.  RedHat and Solaris testing is in progress, but should work.  Windows support was changed to a scheduled task after it was found that managing the PE agent as a Puppet package resource produced unpredictable behavior and is not supported by Puppet Labs.
+
+To upgrade PE agents on PE 2015.x and above deployments, please use the puppetlabs-puppet_agent module.  Note that puppet_ent_agent and puppet_agent both manage puppet.conf, so only one of them can be classified at a time.  On PE 2015.x deployments I recommend using puppet_ent_agent to proactively manage puppet.conf, and using puppet_agent as a tool to effect mass agent upgrades.

@@ -3,6 +3,8 @@ class puppet_ent_agent::install {
   $ensure         = $::puppet_ent_agent::ensure
   $windows_source = $::puppet_ent_agent::windows_source
 
+  assert_private()
+
   if $ensure != 'present' {
     case $::osfamily {
       'windows': {

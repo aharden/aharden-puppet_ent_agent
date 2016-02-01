@@ -10,6 +10,8 @@ class puppet_ent_agent::config {
   $manage_symlinks         = $::puppet_ent_agent::manage_symlinks
   $service_name            = $::puppet_ent_agent::service_name
 
+  assert_private()
+
   Ini_setting {
     ensure  => present,
     path    => $config,

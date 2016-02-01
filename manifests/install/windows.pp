@@ -15,6 +15,8 @@ class puppet_ent_agent::install::windows {
 
   $windows_cmd = 'C:/Windows/Temp/installPEagent.cmd'
 
+  assert_private()
+
   case $::architecture {
     'x86': {
       $package_msi  = "puppet-enterprise-${version}.msi"
