@@ -46,8 +46,6 @@ class puppet_ent_agent::params {
   $windows_task_min        = '10' # run a scheduled task to upgrade PE agent in x mins
   $manage_symlinks         = true
 
-  assert_private()
-
   # determine agent type
   if $::is_pe { # PE 3.x agent
     $bin_path     = '/opt/puppet/bin'
