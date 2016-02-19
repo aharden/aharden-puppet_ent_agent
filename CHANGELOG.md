@@ -1,3 +1,8 @@
+## 2016-02-19 - Version 1.4.1
+
+Bugfix:
+* config.pp: Removed owner/group/mode management of puppet.conf due to inconsistencies between PE 2015.x servers and agents
+
 ## 2016-02-01 - Version 1.4.0
 
 New Features:
