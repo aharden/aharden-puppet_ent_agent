@@ -20,38 +20,6 @@ class puppet_ent_agent::config {
     notify  => Service[$service_name],
   }
 
-  case $::osfamily {
-    'AIX': {
-      if($manage_symlinks) {
-        include ::puppet_ent_agent::config::symlinks
-      }
-
-      file { $config:
-        ensure => file,
-        owner  => 'puppet',
-        group  => 'puppet',
-        mode   => '0600',
-      }
-    }
-    'windows': {
-      file { $config:
-        ensure => file,
-      }
-    }
-    default: {
-      if($manage_symlinks) {
-        include ::puppet_ent_agent::config::symlinks
-      }
-
-      file { $config:
-        ensure => file,
-        owner  => 'pe-puppet',
-        group  => 'pe-puppet',
-        mode   => '0600',
-      }
-    }
-  }
-
   if $agent_server {
     ini_setting { 'agent_server':
       setting => 'server',
@@ -106,5 +74,9 @@ class puppet_ent_agent::config {
       ensure  => absent,
       setting => 'modulepath',
     }
+  }
+
+  if $manage_symlinks {
+    include ::puppet_ent_agent::config::symlinks
   }
 }
