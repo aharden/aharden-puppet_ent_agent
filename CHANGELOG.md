@@ -1,4 +1,9 @@
-## 2016-02-19 - Version 1.4.1
+## 2016-02-22 - Version 1.4.2
+
+Bugfix:
+* config.pp: Removed dangling reference to File[$config]
+
+## 2016-02-19 - Version 1.4.1 (BAD RELEASE)
 
 Bugfix:
 * config.pp: Removed owner/group/mode management of puppet.conf due to inconsistencies between PE 2015.x servers and agents

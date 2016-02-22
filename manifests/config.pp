@@ -16,7 +16,6 @@ class puppet_ent_agent::config {
     ensure  => present,
     path    => $config,
     section => 'main',
-    require => File[$config],
     notify  => Service[$service_name],
   }
 
