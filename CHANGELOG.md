@@ -1,3 +1,8 @@
+## 2016-03-03 - Version 1.4.3
+
+Bugfix:
+* config.pp: Prevented config::symlinks from being included on Windows systems
+
 ## 2016-02-22 - Version 1.4.2
 
 Bugfix:
