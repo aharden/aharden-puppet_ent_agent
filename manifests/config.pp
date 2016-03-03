@@ -75,7 +75,9 @@ class puppet_ent_agent::config {
     }
   }
 
-  if $manage_symlinks {
-    include ::puppet_ent_agent::config::symlinks
+  unless $::osfamily == 'windows' {
+    if $manage_symlinks {
+      include ::puppet_ent_agent::config::symlinks
+    }
   }
 }
