@@ -47,13 +47,13 @@ class puppet_ent_agent::params {
   $manage_symlinks         = true
 
   # determine agent type
-  if $::is_pe { # PE 3.x agent
-    $bin_path     = '/opt/puppet/bin'
-    $service_name = 'pe-puppet'
-    $skip_install = false
-  } else {      # All-in-one agent
+  if versioncmp($::puppetversion, '4.0.0') > 0 { # All-in-one agent
     $bin_path     = '/opt/puppetlabs/bin'
     $service_name = 'puppet'
     $skip_install = true
+  } else {      # PE 3.x agent
+    $bin_path     = '/opt/puppet/bin'
+    $service_name = 'pe-puppet'
+    $skip_install = false
   }
 }
