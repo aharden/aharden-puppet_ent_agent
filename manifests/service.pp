@@ -4,8 +4,10 @@ class puppet_ent_agent::service {
 
   assert_private()
 
-  service { $service_name:
-    ensure => running,
-    enable => true,
+  unless $::operatingsystem == 'Solaris' {
+    service { $service_name:
+      ensure => running,
+      enable => true,
+    }
   }
 }
