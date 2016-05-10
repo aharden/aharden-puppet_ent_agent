@@ -1,3 +1,11 @@
+## 2016-05-10 - Version 2.0.0
+
+New major version release to support classification alongside puppet_agent module during Puppet 3.x to 4.x upgrades.
+
+Bugfix:
+* params.pp: Improve agent version detection.
+* service.pp: Removed Solaris from service resource management -- puppet_agent manages the pe-puppet service during upgrades of Solaris.
+
 ## 2016-03-03 - Version 1.4.3
 
 Bugfix:
