@@ -1,3 +1,10 @@
+## 2016-05-11 - Version 2.0.2
+
+My customers asked me to move Solaris over to curl from wget in puppet_ent_agent::install::nix.  Feedback welcome.
+
+Bugfix:
+* install/nix.pp: Curl used by default on Solaris instead of wget.
+
 ## 2016-05-11 - Version 2.0.1
 
 Version 2.0.0 broke on Solaris.  Refining the service skip logic that avoids puppet_agent resource conflict on Solaris; only skip service management on Solaris if running PE 3.x agent.
