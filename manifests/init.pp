@@ -30,6 +30,7 @@ class puppet_ent_agent (
   $windows_task_min        = $puppet_ent_agent::params::windows_task_min,
 ) inherits puppet_ent_agent::params {
   $skip_install            = $puppet_ent_agent::params::skip_install
+  $skip_service            = $puppet_ent_agent::params::skip_service
 
   validate_absolute_path($config)
   validate_absolute_path($curl_path)
@@ -48,9 +49,14 @@ class puppet_ent_agent (
   }
   validate_integer($windows_task_min)
 
-  if $skip_install {
+  if $skip_install and !$skip_service {
     class { '::puppet_ent_agent::config': } ->
     class { '::puppet_ent_agent::service': }
+  } elsif $skip_install and $skip_service {
+    class { '::puppet_ent_agent::config': }
+  } elsif !$skip_install and $skip_service {
+    class { '::puppet_ent_agent::install': } ->
+    class { '::puppet_ent_agent::config': }  
   } else {
     class { '::puppet_ent_agent::install': } ->
     class { '::puppet_ent_agent::config': } ->

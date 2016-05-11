@@ -9,14 +9,23 @@ class puppet_ent_agent::config {
   $agent_remove_modulepath = $::puppet_ent_agent::agent_remove_modulepath
   $manage_symlinks         = $::puppet_ent_agent::manage_symlinks
   $service_name            = $::puppet_ent_agent::service_name
+  $skip_service            = $::puppet_ent_agent::skip_service
 
   assert_private()
 
-  Ini_setting {
-    ensure  => present,
-    path    => $config,
-    section => 'main',
-    notify  => Service[$service_name],
+  if $skip_service {
+    Ini_setting {
+      ensure  => present,
+      path    => $config,
+      section => 'main',
+    }
+  } else {
+    Ini_setting {
+      ensure  => present,
+      path    => $config,
+      section => 'main',
+      notify  => Service[$service_name],
+    }
   }
 
   if $agent_server {

@@ -51,9 +51,15 @@ class puppet_ent_agent::params {
     $bin_path     = '/opt/puppetlabs/bin'
     $service_name = 'puppet'
     $skip_install = true
+    $skip_service = false
   } else {      # PE 3.x agent
     $bin_path     = '/opt/puppet/bin'
     $service_name = 'pe-puppet'
     $skip_install = false
+    if $::osfamily == 'Solaris' {
+      $skip_service = true
+    } else {
+      $skip_service = false
+    }
   }
 }
