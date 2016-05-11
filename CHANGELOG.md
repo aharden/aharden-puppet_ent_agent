@@ -1,3 +1,8 @@
+## 2016-05-11 - Version 2.0.3
+
+Bugfix:
+* install/nix.pp: Move Solaris back to using root group (bug introduced in 2.0.2).
+
 ## 2016-05-11 - Version 2.0.2
 
 My customers asked me to move Solaris over to curl from wget in puppet_ent_agent::install::nix.  Feedback welcome.
