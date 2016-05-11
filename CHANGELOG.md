@@ -1,3 +1,13 @@
+## 2016-05-11 - Version 2.0.1
+
+Version 2.0.0 broke on Solaris.  Refining the service skip logic that avoids puppet_agent resource conflict on Solaris; only skip service management on Solaris if running PE 3.x agent.
+
+Bugfix:
+* params.pp: Add service skip condition for Solaris OS family running PE 3.x agent.
+* init.pp: Skip service class if not configuring it.
+* config.pp: Skip service notification if not configuring service.
+* service.pp: Refactored OSfamily check out to params class.
+
 ## 2016-05-10 - Version 2.0.0
 
 New major version release to support classification alongside puppet_agent module during Puppet 3.x to 4.x upgrades.

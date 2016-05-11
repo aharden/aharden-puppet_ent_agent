@@ -23,7 +23,7 @@ Because pe_repo on PE 3.x doesn't include the Windows agents, they can be suppor
 ###What puppet\_ent\_agent affects
 
 * puppet.conf configuration file.
-* PE agent service (PE 3.x: pe-puppet; PE 2015.x and later: puppet)
+* PE agent service (PE 3.x: pe-puppet; PE 2015.x and later: puppet) (Note: Service is not managed on Solaris systems running PE 3.x agent to avoid a resource conflict with puppet_agent module.)
 * /usr/bin links for facter, hiera, puppet, pe-man binaries (Unix/Linux)
 * pe-agent package (and pe-\* packages related to PE; PE 3.x only)
 
