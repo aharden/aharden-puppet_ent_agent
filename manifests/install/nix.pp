@@ -13,8 +13,12 @@ class puppet_ent_agent::install::nix {
   assert_private()
 
   case $::osfamily {
-    'AIX','Solaris':   {
+    'AIX': {
       $group    = 'system'
+      $use_curl = true
+    }
+    'Solaris': {
+      $group    = 'root'
       $use_curl = true
     }
     default: {
