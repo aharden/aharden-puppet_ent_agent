@@ -14,12 +14,14 @@ class puppet_ent_agent::install::nix {
 
   case $::osfamily {
     'AIX': {
-      $group    = 'system'
-      $use_curl = true
+      $group      = 'system'
+      $use_curl   = true
+      $use_curl_k = false
     }
     'Solaris': {
-      $group    = 'root'
-      $use_curl = true
+      $group      = 'root'
+      $use_curl   = true
+      $use_curl_k = true
     }
     default: {
       $group    = 'root'
@@ -37,9 +39,16 @@ class puppet_ent_agent::install::nix {
     }
 
     if $use_curl {
-      exec { "${curl_path} -1 -sLo \"${install_file}\" \"${source}\"":
-        user   => 'root',
-        before => Exec[$install_cmd],
+      if $use_curl_k {
+        exec { "${curl_path} -k -1 -sLo \"${install_file}\" \"${source}\"":
+          user   => 'root',
+          before => Exec[$install_cmd],
+        }
+      } else {
+        exec { "${curl_path} -1 -sLo \"${install_file}\" \"${source}\"":
+          user   => 'root',
+          before => Exec[$install_cmd],
+        }
       }
     } else {
       wget::fetch { 'download PE agent install.bash':
