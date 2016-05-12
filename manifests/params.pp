@@ -14,6 +14,7 @@
 # - $agent_remove_modulepath: remove the deprecated modulepath setting from puppet.conf
 # - $manage_symlinks: create symlinks in /usr/bin
 # - $staging_dir: temp directory to use on non-Windows servers
+# - $timeout: time to wait for agent installation to finish on Unix/Linux
 # - $windows_source: UNC path to file share hosting Windows PE MSI installers
 # _ $windows_task_min: (int) will schedule a task to run upgrade in x mins
 # - $version: must pass version number for PE windows package provider and AIX
@@ -42,6 +43,7 @@ class puppet_ent_agent::params {
   $agent_splay             = undef
   $agent_remove_modulepath = false
   $staging_dir             = '/tmp/puppet_ent_agent'
+  $timeout                 = 900
   $windows_source          = undef
   $windows_task_min        = '10' # run a scheduled task to upgrade PE agent in x mins
   $manage_symlinks         = true

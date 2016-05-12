@@ -3,6 +3,7 @@ class puppet_ent_agent::install::nix {
   $curl_path    = $::puppet_ent_agent::curl_path
   $master       = $::puppet_ent_agent::master
   $staging_dir  = $::puppet_ent_agent::staging_dir
+  $timeout      = $::puppet_ent_agent::timeout
   $version      = $::puppet_ent_agent::ensure
   $install_file = "${staging_dir}/install.bash"
   $install_cmd  = "/bin/bash -e ${install_file}"
@@ -64,7 +65,8 @@ class puppet_ent_agent::install::nix {
     }
 
     exec { $install_cmd:
-      user => 'root',
+      user    => 'root',
+      timeout => $timeout,
     }
   }
 }

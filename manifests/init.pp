@@ -26,6 +26,7 @@ class puppet_ent_agent (
   $agent_remove_modulepath = $puppet_ent_agent::params::agent_remove_modulepath,
   $staging_dir             = $puppet_ent_agent::params::staging_dir,
   $manage_symlinks         = $puppet_ent_agent::params::manage_symlinks,
+  $timeout                 = $puppet_ent_agent::params::timeout,
   $windows_source          = $puppet_ent_agent::params::windows_source,
   $windows_task_min        = $puppet_ent_agent::params::windows_task_min,
 ) inherits puppet_ent_agent::params {
@@ -56,7 +57,7 @@ class puppet_ent_agent (
     class { '::puppet_ent_agent::config': }
   } elsif !$skip_install and $skip_service {
     class { '::puppet_ent_agent::install': } ->
-    class { '::puppet_ent_agent::config': }  
+    class { '::puppet_ent_agent::config': }
   } else {
     class { '::puppet_ent_agent::install': } ->
     class { '::puppet_ent_agent::config': } ->
