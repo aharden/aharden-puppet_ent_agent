@@ -1,3 +1,8 @@
+## 2016-05-12 - Version 2.0.5
+
+Bugfix:
+* install/nix.pp: Add 15-minute timeout for agent upgrade installation process.  Observed some nodes taking over 5 minutes (default exec timeout) to complete the install.
+
 ## 2016-05-12 - Version 2.0.4
 
 Bugfix:

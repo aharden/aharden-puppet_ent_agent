@@ -85,6 +85,10 @@ If set to 'true' the module will create symlinks to hiera, puppet, facter, etc i
 
 The directory that will be used on non-Windows hosts to temporarily hold the PE Agent installation script.  This defaults to '/tmp/puppet_ent_agent'.
 
+####`timeout`
+
+The time to wait for agent upgrade installation process to finish on Unix/Linux nodes
+
 ####`windows_source`
 
 A UNC path to a publicly-readable SMB share that contains the PE Agent for Windows MSI files.  Ensure that both 32-bit and 64-bit installers are hosted there; the default file names are assumed:
