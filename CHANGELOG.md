@@ -1,3 +1,8 @@
+## 2016-05-12 - Version 2.0.4
+
+Bugfix:
+* install/nix.pp: Use insecure curl on Solaris.  This is required for Puppet deployments that are using a self-signed CA.  Feedback welcome.
+
 ## 2016-05-11 - Version 2.0.3
 
 Bugfix:
